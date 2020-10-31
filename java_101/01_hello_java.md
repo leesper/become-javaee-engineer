@@ -4,7 +4,7 @@
 
 ## 知识点
 
-请阅读《Thinking In Java》或最新版的《On Java 8》相关章节掌握以下知识点。
+请阅读《Thinking In Java》或最新版的[《On Java 8》](https://github.com/LingCoder/OnJava8)相关章节掌握以下知识点。
 
 ### Java语言
 

@@ -4,7 +4,7 @@
 
 ## 知识点
 
-请阅读《Thinking In Java》或最新版的《On Java 8》相关章节掌握以下知识点。
+请阅读《Thinking In Java》或最新版的[《On Java 8》](https://github.com/LingCoder/OnJava8)相关章节掌握以下知识点。
 
 ### 数据类型转换
 
@@ -20,6 +20,8 @@
 4. 6种关系运算符
 5. 逻辑运算符及其短路求值
 6. 三元运算符
+7. 位移运算符
+8. 各种运算符的优先级
 
 ### 方法
 

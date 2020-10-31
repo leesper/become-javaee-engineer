@@ -4,7 +4,7 @@
 
 ## 知识点
 
-请阅读《Thinking In Java》或最新版的《On Java 8》相关章节掌握以下知识点。
+请阅读《Thinking In Java》或最新版的[《On Java 8》](https://github.com/LingCoder/OnJava8)相关章节掌握以下知识点。
 
 ### 选择判断
 
@@ -14,11 +14,52 @@
 
 重点掌握：
 
-1. for循环的语句格式
+1. for循环的语句格式，逗号操作符
 2. while循环和do..while循环
 3. continue和break的区别
 4. 无限循环
 5. 嵌套循环
+
+Java 5引入了增强版的for-in循环，可以用于所有可迭代（iterable）的对象：
+
+```java
+public class ForInString {
+  public static void main(String[] args) {
+    for(char c: "An African Swallow".toCharArray())
+      System.out.print(c + " ");
+  }
+}
+```
+
+输出结果：
+
+```
+A n   A f r i c a n   S w a l l o w
+```
+
+Java 7 增加了在字符串上switch的用法：
+
+```java
+switch(color) {
+  case "red":
+    System.out.println("RED");
+    break;
+  case "green":
+    System.out.println("GREEN");
+    break;
+  case "blue":
+    System.out.println("BLUE");
+    break;
+  case "yellow":
+    System.out.println("YELLOW");
+    break;
+  default:
+    System.out.println("Unknown");
+    break;
+}
+```
+
+
 
 ### 调试小技巧
 
@@ -93,6 +134,14 @@ D、0
 ### 二、编程题
 
 1. 打印出1到100之间的既是3的倍数又是5倍数的数字.（请提交代码及正确的运行截图）
+
+```java
+for (int i = 1; i <= 100; i++) {
+  if (i % 3 == 0 && i % 5 == 0) {
+    System.out.println(i);
+  }
+}
+```
 
 
 
