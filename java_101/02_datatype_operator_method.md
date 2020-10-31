@@ -46,15 +46,17 @@
 
 3. 代码如下：
 
+```java
 public static void main(String[] args){
 
-​        \______________
+    ______________
 
 }
 
 public static void method(){
    System.out.println("I am a PROGRAMMER");
 }
+```
 
 运行结果是：I am a PROGRAMMER
 横线处应该填写的正确代码是（C）
