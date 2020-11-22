@@ -44,6 +44,35 @@ Java语言中的接口是一种引用类型，描述“行为”，即方法的�
 
 使用多态可以实践依赖倒置原则并面向接口编程。但注意引用类型转换问题，向上转换是子类向父类转，是默认的；向下转换是父类向子类转以调用子类有而父类没有的方法，是强制的，为了避免ClassCastException错误，可以使用instanceof运算符判断某个对象是否为某个抽象数据类型的实例。
 
+### final关键字
+
+final在Java语言中表示各种意义上的“不可改变”：
+
+* 修饰一个类的时候，表示该类不能被继承，只能被使用
+* 修饰一个方法的时候，表示该方法无法被重写
+* 修饰一个变量的时候，表示该变量无法重新赋值
+
+对于基本类型的局部变量，final修饰后只能被赋值一次，之后不能再有任何修改，其实就是常量；对于引用类型的局部变量，虽然不能重新赋值，但可以改变该引用指向的对象。对于成员变量，final修饰后要么在定义时初始化，要么在构造器中初始化，之后无法改变
+
+### static关键字
+
+static修饰的成员变量称为类变量，优先于类的对象存在而被类的所有对象所共享。static修饰的方法称为静态方法，该方法被类的所有对象共享，且无法调用非静态方法，因为它先于非静态方法存在。
+
+静态代码块定义在类中，方法外，类加载时执行有且仅有一次，且先于构造方法运行。所有static修饰的（变量、方法和代码块）都在类加载时执行一次，且只有一次。优先于对象存在，所有对象都共享它们。
+
+### 不同权限访问能力
+
+|                          | public | protected | default | private |
+| ------------------------ | ------ | --------- | ------- | ------- |
+| 同一类中                 | √      |           |         |         |
+| 同一包中（子类和无关类） | √      |           |         |         |
+| 不同包的子类             | √      |           |         |         |
+| 不同包中的无关类         | √      |           |         |         |
+
+### 内部类
+
+定义在其他类内部的类称为内部类。成员内部类是定义在其他类内、方法之外的类，外部类和内部类之间是包含关系。内部类可以直接访问外部类成员，外部类访问内部类成员只能通过创建对象。匿名内部类是成员内部类的一种特殊情况，既可以继承其他类又可以实现接口，是一种就地定义子类对象的方法。
+
 ### 一些Java API的使用
 
 掌握Random、Scanner、BigInteger和BigDecimal类的使用。
@@ -502,3 +531,192 @@ get/set方法
 你的代码（提交代码及正确的运行截图）
 
 **参考答案**：参见com.javaee.vehicle2
+
+7. 选择题
+
+ （1）查看下列代码
+
+ ```java
+public class Animal {
+  public final void eat() {
+    System.out.println("动物吃饭");
+  }
+}
+
+public class Dog extends Animal {
+  @Override
+  public void eat() {
+    System.out.println("狗吃饭");
+  }
+}
+
+public class Test01 {
+  public static void main(String[] args) {
+    Dog d = new Dog();
+    d.eat();
+  }
+}
+ ```
+
+请问，代码执行的结果是？（A）
+
+A：编译错误，被final修饰的方法不能被重写 
+
+B：输出狗吃饭 
+
+C：输出动物吃饭 
+
+D：没有任何输出结果
+
+（2）查看下列代码
+
+ ```java
+public class Animal {
+  public final void eat() {
+    System.out.println("动物吃饭");
+  }
+}
+
+public class Dog extends Animal {
+  public void sleep() {
+    System.out.println("狗睡觉");
+  }
+}
+
+public class Test01 {
+  public static void main(String[] args) {
+    Dog d = new Dog();
+    d.eat();
+    d.sleep();
+  }
+}
+ ```
+
+请问，代码执行后的结果是？（B）
+
+A：输出狗睡觉
+
+B：输出动物吃饭和狗睡觉
+
+C：编译报错
+
+D：输出动物吃饭
+
+8. 观察下列代码，选出正确答案：（A）
+
+ ```java
+public class Person {
+  String name;
+  int age;
+  public static void study() {
+    sleep();  
+  }
+  public void sleep() {
+		System.out.println("sleep");
+  }
+  public static void main(String[] args){
+    Person.study();
+  }
+}
+ ```
+
+A：编译失败
+
+B：sleep
+
+C：运行报错
+
+D：什么也没有输出 
+
+9. 下列对于public修饰符描述正确的是？（C）
+
+A：被public所修饰的成员只能在本类中访问
+
+B：被public所修饰的成员只能在相同的包下访问 
+
+C：被public所修饰的成员可以在本类、相同包、不同包下使用 
+
+D：被public所修饰的成员可以跨不同的项目进行访问 
+
+10. 下列对于private修饰符描述正确的是？（D）
+
+A: 被private所修饰的成员可以在本类、相同包、不同包下使用
+
+B: 被private所修饰的成员可以在相同包下不同的类中使用 
+
+C: 被private所修饰的成员可以跨不同的项目进行访问
+
+D: 被private所修饰的成员只能在本类中访问
+
+11. 关于内部类的说法正确的有哪些（多选）？（ABCD）
+
+A: 将一个类A定义在另一个类B里面，里面的那个类A就称为内部类，B则称为外部类
+
+B: 内部类也是类,编译后也有对应的class文件
+
+C: 内部类可以直接访问外部类的成员，包括私有成员
+
+D: 外部类要访问内部类的成员，必须要建立内部类的对象
+
+12. 查看下列代码
+
+```java
+public class Person {
+  class Heart{
+    String name = "李四";
+    public void jump() {
+      String name = "张三";
+      System.out.println(name + "心脏在跳动");
+    }
+  }
+}
+public class Test {
+  public static void main(String[] args) {
+    Person.Heart ph = new Person().new Heart();
+    ph.jump();
+  }
+}
+```
+
+请问，代码执行后的输出结果是？（A）
+
+A: 张三心脏在跳动 
+
+B: 心脏在跳动 
+
+C: 李四张三心脏在跳动 
+
+D: 没有任何输出结果
+
+13. 查看下列代码
+
+ ```java
+public interface Inter {
+  public abstract void print();
+}
+
+public class Test01 {
+  public static void main(String[] args) {
+    new Inter() {
+      @Override
+      public void print() {
+        System.out.println("你好匿名内部类");
+      }
+    }.print();
+  }
+  
+  public static void print() {
+    System.out.println("print");
+  }
+}
+ ```
+
+请问，代码执行后的输出结果是？（B）
+
+A:  编译报错
+
+B:  你好匿名内部类
+
+C:  没有任何输出结果
+
+D: print
