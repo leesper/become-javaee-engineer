@@ -364,8 +364,3 @@ public class ArrayDemo {
     }
 }
 ```
-
-
-
-
-
