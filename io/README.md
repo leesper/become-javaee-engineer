@@ -2,6 +2,15 @@
 
 ## 知识点
 
+* File类的使用、绝对路径和相对路径概念
+* IO流的分类（按流向、按数据类型）
+* 基础字节流、缓冲字节流
+* 字符编码和字符集概念
+* 字符向字节转换流OutputStreamWriter和InputStreamReader
+* 字符流便捷类FileWriter和FileReader
+* 字符缓冲流BufferedReader和BufferedWriter
+* 打印流
+
 ## 练习题
 
 选择题
@@ -52,7 +61,7 @@ D：可以在创建person对象的方法上,用throws关键字将WeightOutOfBoun
 
 3. 选择题
 
- （1）能指定字符编码的I/O流是：多选（）
+ （1）能指定字符编码的I/O流是：多选（BC）
 
 A：Reader
 
@@ -62,7 +71,7 @@ C：OutputStreamWriter
 
 D：BufferedReader
 
-（2）下面哪个方法可以刷新 流的缓冲?()
+（2）下面哪个方法可以刷新 流的缓冲？（D）
 
 A：void release()
 
@@ -84,11 +93,11 @@ class IOTest {
   }
   
 	public static void write() throws IOException {
-    FileWriter fw = new FileWriter(""d:\\fw.txt"");
+    FileWriter fw = new FileWriter("d:\\fw.txt");
     fw.write( ""hello"" );
   }
   public static void read() throws IOException {
-    FileReader fr = new FileReader(""d:\\fw.txt"");
+    FileReader fr = new FileReader("d:\\fw.txt");
     int ch = -1;
     while ( (ch = fr.read()) != -1 ) {
       System.out.print( (char)ch );
@@ -96,6 +105,8 @@ class IOTest {
   }
 }
 ```
+
+运行结果为空，因为fw没有flush()
 
 （2）给出以下代码，请问该程序的运行结果是什么？如有问题，请说明原因。
 
@@ -106,14 +117,14 @@ class IOTest {
 		read();
   }
   public static void write() throws IOException {
-    BufferedWriter bw = new BufferedWriter(new FileWriter(""d:\\bw.txt"") );
-    bw.write(""hello"");
+    BufferedWriter bw = new BufferedWriter(new FileWriter("d:\\bw.txt"));
+    bw.write("hello");
     bw.newLine();
     bw.flush();
     bw.close();
   }
 	public static void read() throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader(""d:\\bw.txt""));
+    BufferedReader br = new BufferedReader(new FileReader("d:\\bw.txt"));
     String line = null;
     while ((line = br.readLine()) != null) {
       System.out.print( line );
@@ -122,6 +133,8 @@ class IOTest {
   }
 }
  ```
+
+运行结果为hello并回车
 
 （3）给出以下代码，请问该程序的运行结果是什么？如有问题，请说明原因。
 
@@ -134,12 +147,12 @@ class Test {
   }
   
 	public static void write() throws FileNotFoundException {
-    PrintWriter pw = new PrintWriter(new FileOutputStream(""d:\\file.txt"", true));
+    PrintWriter pw = new PrintWriter(new FileOutputStream("d:\\file.txt", true));
     pw.println(""你好"");
     pw.close();
   }
   public static void read() throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader(""d:\\file.txt""));
+    BufferedReader br = new BufferedReader(new FileReader("d:\\file.txt"));
 		String line = null;
 		while ((line = br.readLine()) != null) {
       System.out.println(line);
@@ -148,3 +161,9 @@ class Test {
   }
 }
  ```
+
+运行结果：
+
+你好
+
+你好
