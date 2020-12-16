@@ -2,17 +2,35 @@
 
 ## 知识点
 
+* 各大数据库厂商提供的驱动实现了JDBC接口规范
+* 四大核心对象：DriverManager、Connection、Statement和ResultSet
+* 使用JDBC开发的步骤
+  * 注册驱动
+  * 获得连接
+  * 获得SQL语句对象
+  * 执行SQL语句获得结果
+  * 处理结果
+  * 释放资源
+* 使用JDBC进行各种增删查改操作
+* 如何使用PreparedStatement来避免SQL注入
+
 ## 练习题
 
 1. 解答题
 
 （1）什么是JDBC，在什么时候会用到它？（个人理解）
 
+需要通过Java语言访问各种关系型数据库的时候会用到JDBC，但现在一般都用MyBatis或者Hibernate这类高级框架，裸写SQL的情况很少了，主要是不容易维护。当然理解JDBC对后面使用MyBatis会很有帮助。
+
 （2）JDBC操作数据库的步骤 ？
+
+注册驱动，获取连接，创建SQL语句，执行SQL语句得到结果，处理结果，释放资源
 
 2. 编程题
 
-（1）使用原生JDBC完成增删改查。
+（1）使用原生JDBC完成增删改查
+
+参见JDBCDemo示例代码
 
 3. 解答题
 
