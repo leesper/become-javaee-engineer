@@ -11,7 +11,7 @@
 * ServletContext对象及其使用（获取初始化参数、资源绝对路径以及作为域对象）
 * 4大域对象（page、request、session和application）
 * Servlet注解开发
-* Response对象
+* Request和Response对象
 * 服务器转发和客户端重定向
 
 ## 练习题
@@ -66,13 +66,19 @@ Tomcat作为Web服务器，用来运行使用Java开发的满足Servlet规范的
 
 4. 解答题
 
-（1）request 和response各自的作用。
+（1）request 和response各自的作用
+
+request代表的是客户端浏览器向服务器发送的“请求”，包括各种提交的请求参数；response表示服务器向客户端发送的各种“响应”，包括处理结果。
 
 （2）转发重定向的区别
+
+服务端转发，客户端重定向。所以转发不会改变URL，但重定向会；转发是服务器行为，客户端无需再请求一次，而重定向是客户端行为，客户端会再次发送一次请求；转发只能发生在内部，重定向可以到别的外部网站。
 
  5. 编程题（代码加截图）
 
 （1）完成课上学习的⽤户登录功能
+
+参见RegisterLoginDemo。
 
 6. 解答题
 

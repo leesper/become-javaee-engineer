@@ -19,5 +19,6 @@
 </form>
 
 <a href="download?fileName=hadoop.PNG">下载图片</a>
+<a href="register.jsp">新用户注册</a>
 </body>
 </html>
