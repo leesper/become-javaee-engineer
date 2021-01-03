@@ -14,7 +14,11 @@
 * Request和Response对象
 * 服务器转发和客户端重定向
 * 什么是Web会话，它主要解决什么问题（跨请求的数据共享）
-* 什么是Cookie技术，它的应用场景是什么，携带路径和生存周期
+* 什么是Cookie，它的应用场景是什么，携带路径和生存周期
+* 什么是Session，与Cookie的区别
+* Session应用场景、如何持久化，以及生命周期
+* Filter和Listener的概念以及如何使用
+* 通过反射抽取Servlet的思路
 
 ## 练习题
 
@@ -106,10 +110,34 @@ Cookie是客户端浏览器缓存会话数据的机制，将服务器产生的�
 
 （1）Cookie 和 Session 的各自特点？
 
+Cookie是客户端会话技术，Session是服务端会话技术。
+
 （2）Cookie和 Session的不同点？
+
+Cookie存放在客户端，数据不安全，存储数量受限制；Session存放在服务端，数据安全，存储数量不受限制。
 
 （3）如果客户端禁止 cookie 那么 session 还能用吗？
 
-9. 编程题
+客户端禁用Cookie后，Session就无法使用了。
 
-（1）完成验证码案例（截图和代码）
+9. 解答题
+
+（1）什么是过滤器？
+
+过滤器用来对请求进行过滤，一些不符合要求的请求会被直接过滤掉，其他的则放行。
+
+（2）什么是监听器？
+
+用来监听ServletContext，Request和Response等域对象的创建、销毁和数据变化并进行响应的类。
+
+（3）Servlet与Filter的区别？
+
+多个Filter会被串成过滤器链，经过一层一层筛选最后调用Servlet。Filter主要用来过滤请求，Servlet主要用来处理请求。
+
+（4）filter的生命周期？
+
+Tomcat服务器启动时，filter由引擎创建，调用init()回调方法；filter通过doFilter()方法处理过滤逻辑；服务器关闭时销毁，回调destroy()方法。
+
+10. 编程题：完成物品安全检查案例
+
+参见FilterDemo代码。
