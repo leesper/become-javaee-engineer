@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.dao.UserDao">
+    <sql id="selectUser">
+        SELECT * FROM user
+    </sql>
+    
+    <select id="findById" parameterType="integer" resultType="User">
+        <include refid="selectUser" /> WHERE id=#{id}
+    </select>
+
+    <insert id="save" parameterType="User">
+        INSERT INTO user VALUES (#{id}, #{username}, #{sex}, #{address})
+        <selectKey keyProperty="id" order="AFTER" resultType="integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <delete id="deleteById" parameterType="integer">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
+
+    <update id="update" parameterType="User">
+        UPDATE user SET username=#{username}, sex=#{sex}, address=#{address} WHERE id=#{id}
+    </update>
+
+    <select id="findAll" resultType="User">
+        <include refid="selectUser"></include>
+    </select>
+
+    <select id="findByName" parameterType="java.lang.String" resultType="User">
+        <include refid="selectUser"></include> WHERE username LIKE CONCAT('%', #{username}, '%')
+    </select>
+
+    <select id="findByCondition" parameterType="User" resultType="User">
+        <include refid="selectUser"></include>
+        <where>
+        <if test="username != null">
+            AND username=#{username}
+        </if>
+        <if test="sex != null">
+            AND sex=#{sex}
+        </if>
+        <if test="address != null">
+            AND address=#{address}
+        </if>
+        </where>
+    </select>
+    <select id="findByIds" parameterType="integer" resultType="User">
+        <include refid="selectUser"></include>
+        <where>
+<!--            <foreach collection="list" item="id" open="id IN (" close=")" separator=",">-->
+<!--                #{id}-->
+<!--            </foreach>-->
+            <foreach collection="list" item="id"  separator="OR">
+                id = #{id}
+            </foreach>
+        </where>
+    </select>
+</mapper>

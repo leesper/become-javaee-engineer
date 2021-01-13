@@ -33,8 +33,43 @@ ${}只是简单的字符串替换，#{}则相当于JDBC的`?`通配符。前者�
 * dataSource（数据源）：数据库驱动相关配置
 * mappers（映射器）：告诉MyBatis去哪寻找SQL映射语句
 
-2. 编程题
-
-（1）使用MyBatis完成课上案例增删改查操作。（提交编码）
+2. 编程题：使用MyBatis完成课上案例增删改查操作。（提交编码）
 
 参见mybatisdemo代码。
+
+3. 解答题
+
+（1）传统开发模式的弊端有哪些？
+
+需要重复编写从InputStream到SqlSessionFactory再到获取SqlSession对象的过程。另外，需要在代码中通过写死statement ID执行相应SQL语句，不方便维护。
+
+（2）mybatis动态SQL语句有哪些，每个作用描述?
+
+* if
+
+用来拼接WHERE子句中的可选语句，当判断某个属性不为空时添加某个字段作为查询条件。
+
+* choose（when otherwise）
+
+类似Java的switch语句，在多个条件中选择一个。
+
+* trim where set
+
+where会在子元素有返回时提供WHERE子句，它会自动去除开头的AND和OR。可以通过自定义trim元素来定制元素功能。set元素用来动态包含需要更新的列。
+
+* foreach
+
+在SQL语句中对集合进行遍历，实现诸如IN...的功能。
+
+（3）代理开发方式是什么？
+
+只定义DAO接口，然后编写XML映射文件，提供响应SQL语句，为此必须满足4个条件：
+
+* XML映射文件在resources目录下的结构必须与对应的接口包名相同
+* XML映射文件中的namespace必须与接口包名相同
+* XML映射文件中statement ID必须与对应接口名相同
+* XML映射文件中的parameterType和resultType必须分别与函数参数类型和返回值类型相同
+
+4. 编程题：mybatis使用分页插件实现分页功能。并获得分页数据。（需提交代码）
+
+参见mybatisdao代码。
