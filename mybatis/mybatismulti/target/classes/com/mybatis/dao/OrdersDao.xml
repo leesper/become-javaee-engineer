@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.dao.OrdersDao">
+    <resultMap id="orderMap" type="OrderUsers">
+        <id property="id" column="id"/>
+        <result property="ordertime" column="ordertime"/>
+        <result property="total" column="total"/>
+        <association property="user" javaType="User">
+            <id property="id" column="userid"/>
+            <result property="username" column="username"/>
+            <result property="sex" column="sex"/>
+            <result property="address" column="address"/>
+        </association>
+    </resultMap>
+    <select id="findByOrdersWithUser" resultMap="orderMap">
+        SELECT * FROM orders o JOIN user u ON o.userid = u.id
+    </select>
+
+    <resultMap id="userMap" type="UserOrders">
+        <id property="id" column="userid"/>
+        <result property="username" column="username"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+        <collection property="orders" ofType="Order">
+            <id property="id" column="orderid"/>
+            <result property="ordertime" column="ordertime"/>
+            <result property="total" column="total"/>
+        </collection>
+    </resultMap>
+    <select id="findByUserWithOrders" resultMap="userMap">
+        SELECT
+            u.id AS userid,
+            username,
+            sex,
+            address,
+            o.id AS orderid,
+            ordertime,
+            total
+        FROM user u
+        LEFT JOIN orders o
+        ON u.id = o.userid;
+    </select>
+
+    <resultMap id="userRoleMap" type="UserRoles">
+        <id property="id" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+        <collection property="roles" ofType="Role">
+            <id property="id" column="rid"/>
+            <result property="name" column="rolename"/>
+        </collection>
+    </resultMap>
+    <select id="findByUserWithRoles" resultMap="userRoleMap">
+        SELECT
+            u.id AS uid,
+            username,
+            sex,
+            address,
+            userid,
+            roleid,
+            r.id AS rid,
+            rolename
+        FROM user u
+        JOIN user_role ur
+        ON u.id = ur.userid
+        JOIN role r
+        ON ur.roleid = r.id
+    </select>
+
+    <resultMap id="roleUserMap" type="RoleUsers">
+        <id property="id" column="id"/>
+        <result property="name" column="rolename"/>
+        <collection property="users" ofType="User">
+            <id property="id" column="userid"/>
+            <result property="username" column="username"/>
+            <result property="sex" column="sex"/>
+            <result property="address" column="address"/>
+        </collection>
+    </resultMap>
+    <select id="findByRoleWithUsers" resultMap="roleUserMap">
+        SELECT
+            r.id,
+            rolename,
+            u.id AS userid,
+            username,
+            sex,
+            address
+        FROM role r
+        LEFT JOIN user_role ur
+        ON r.id = ur.roleid
+        LEFT JOIN user u
+        ON u.id = ur.userid
+    </select>
+
+</mapper>

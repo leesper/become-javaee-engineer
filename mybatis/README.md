@@ -73,3 +73,17 @@ where会在子元素有返回时提供WHERE子句，它会自动去除开头的A
 4. 编程题：mybatis使用分页插件实现分页功能。并获得分页数据。（需提交代码）
 
 参见mybatisdao代码。
+
+5. 解答题：mybatis常用注解有哪些
+
+* 基础的CRUD注解：@Insert、@Delete、@Select和@Update
+* 参数注解@Param
+* 主键返回@SelectKey
+* 等价于resultMap的结果映射注解@Results
+* 等价于result的@Result注解
+* 等价于association的一对一关系注解@One
+* 等价于collection的一对多关系注解@Many
+
+6. 编程题：使用mybatis注解或xml方式完成课上"一对一"查询案例、"一对多"查询案例和"多对多"查询案例。（需提交代码）
+
+参见mybatisannotation代码。
