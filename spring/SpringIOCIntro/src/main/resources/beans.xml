@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myDate" class="java.util.Date"></bean>
+
+    <bean id="accountDao"
+          class="com.spring.dao.impl.AccountDaoImpl"
+          init-method="init"
+    >
+    </bean>
+
+    <bean id="accountService"
+          class="com.spring.service.impl.AccountServiceImpl">
+    </bean>
+
+    <bean id="accountService2"
+          class="com.spring.service.impl.AccountServiceImpl2">
+        <!--根据name赋值-->
+        <constructor-arg name="name" value="迪丽热巴"></constructor-arg>
+        <constructor-arg name="age" value="22"></constructor-arg>
+        <constructor-arg name="birthday" ref="myDate"></constructor-arg>
+
+        <!--根据index赋值-->
+<!--        <constructor-arg index="0" value="晓明"></constructor-arg>-->
+<!--        <constructor-arg index="1" value="25"></constructor-arg>-->
+<!--        <constructor-arg index="2" ref="myDate"></constructor-arg>-->
+
+        <!--根据type赋值-->
+<!--        <constructor-arg type="java.lang.String" value="小丽"></constructor-arg>-->
+<!--        <constructor-arg type="java.lang.Integer" value="26"></constructor-arg>-->
+<!--        <constructor-arg type="java.util.Date" ref="myDate"></constructor-arg>-->
+    </bean>
+
+    <bean id="accountService3"
+          class="com.spring.service.impl.AccountServiceImpl3">
+        <property name="name" value="热巴"></property>
+        <property name="age" value="26"></property>
+        <property name="birthday" ref="myDate"></property>
+    </bean>
+
+    <bean id="accountService4"
+          class="com.spring.service.impl.AccountServiceImpl4">
+        <property name="myStrs">
+            <array>
+                <value>JavaSE</value>
+                <value>JavaWEB</value>
+                <value>SSM</value>
+            </array>
+        </property>
+        <property name="myList">
+            <list>
+                <value>JavaSE</value>
+                <value>JavaWEB</value>
+                <value>JavaWEB</value>
+                <value>SSM</value>
+            </list>
+        </property>
+        <property name="mySet">
+            <set>
+                <value>JavaSE</value>
+                <value>JavaWEB</value>
+                <value>JavaWEB</value>
+                <value>SSM</value>
+            </set>
+        </property>
+        <property name="myMap">
+            <map>
+                <entry key="001" value="JavaSE"></entry>
+                <entry key="002" value="JavaWEB"></entry>
+                <entry key="002" value="SSM"></entry>
+            </map>
+        </property>
+        <property name="myProps">
+            <props>
+                <prop key="001">JavaSE</prop>
+                <prop key="002">JavaWEB</prop>
+                <prop key="002">SSM</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
