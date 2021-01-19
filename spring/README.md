@@ -17,3 +17,18 @@ IoC是控制反转的意思。所谓控制反转，是指本来需要开发人�
 4. 什么是依赖注入？
 
 依赖注入就是通过XML或者注解，为Spring容器管理的bean对象注入属性值，通过构造函数或者setter方法的方式。
+
+5. Spring中的的注解有哪些，并描述其作用？
+
+* @Component：bean标签对应注解，衍生@Repository、@Controller和@Service
+* @Scope：对应bean标签scope属性
+* @PostConstruct：对应bean标签init-method属性
+* @PreDestroy：对应bean标签destroy-method属性
+* @Autowired：用于进行对象的依赖注入
+* @Qualifier：通过ID进行注解，常用于一个接口多个实现类的情况
+* @Configuration：标识配置类
+* @ComponentScan：对应XML配置文件中的context:component-scan，用来扫描Bean类型
+* @Import引入其他的配置类，这些配置类不能用@Configuration修饰否则容易出错
+* @PropertySource：指定要读取的properties文件
+* @Value：对成员变量赋初始值
+* @Bean：标记一个方法的返回值为bean对象，放到Spring容器中维护
