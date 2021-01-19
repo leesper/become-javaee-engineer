@@ -32,3 +32,4 @@ IoC是控制反转的意思。所谓控制反转，是指本来需要开发人�
 * @PropertySource：指定要读取的properties文件
 * @Value：对成员变量赋初始值
 * @Bean：标记一个方法的返回值为bean对象，放到Spring容器中维护
+
