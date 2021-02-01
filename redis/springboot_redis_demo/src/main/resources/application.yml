@@ -1,0 +1,15 @@
+logging:
+  level:
+    com:
+      javaee:
+        mapper: debug
+
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3306/ssm?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+  redis:
+    sentinel:
+      nodes: 192.168.0.37:26379,192.168.0.37:26380,192.168.0.37:26381
+      master: mymaster
