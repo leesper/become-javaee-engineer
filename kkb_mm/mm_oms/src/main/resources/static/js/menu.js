@@ -6,7 +6,7 @@ var nemu = {
 			"children": [{
 				"path": "/1-1",
 				"title": "用户列表",
-				"linkUrl": "userList.html",
+				"linkUrl": "userList",
 				"children": []
 			}]
 		},
@@ -17,7 +17,7 @@ var nemu = {
 			"children": [{
 				"path": "/2-1",
 				"title": "企业列表",
-				"linkUrl": "comList.html",
+				"linkUrl": "comList",
 				"children": []
 			}]
 		},
@@ -28,7 +28,7 @@ var nemu = {
 			"children": [{
 				"path": "/4-1",
 				"title": "方向列表",
-				"linkUrl": "industryList.html",
+				"linkUrl": "industryList",
 				"children": []
 			}]
 		},
@@ -39,12 +39,12 @@ var nemu = {
 			"children": [{
 				"path": "/5-1",
 				"title": "基础题库",
-				"linkUrl": "questionBasicList.html",
+				"linkUrl": "questionBasicList",
 				"children": []
 			}, {
 				"path": "/5-2",
 				"title": "精选题库",
-				"linkUrl": "questionClassicList.html",
+				"linkUrl": "questionClassicList",
 				"children": []
 			}]
 		},
@@ -55,7 +55,7 @@ var nemu = {
 			"children": [{
 				"path": "/6-1",
 				"title": "学科管理",
-				"linkUrl": "courseList.html",
+				"linkUrl": "courseList",
 				"children": []
 			}]
 		}
