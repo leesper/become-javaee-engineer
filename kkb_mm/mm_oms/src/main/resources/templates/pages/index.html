@@ -141,7 +141,13 @@
                 // console.log(key, keyPath);
             },
             logout(){
-                window.location.href = "login";
+                axios.get(app_path + "user/logout").then((response) => {
+                    if (response.data.code == 200) {
+                        window.location.href = "login";
+                        sessionStorage.clear();
+                    }
+                });
+
             },
             isClossTabFun() {
                 if (!this.isCollapse) {

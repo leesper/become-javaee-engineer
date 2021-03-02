@@ -7,9 +7,12 @@ import com.kkb.utils.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Enumeration;
 
 import static com.kkb.constant.GlobalConst.SESSION_KEY_USER;
 
@@ -35,5 +38,22 @@ public class UserController extends BaseController {
             logger.error("error: " + e.getMessage());
             return AjaxResult.error(e.getMessage());
         }
+    }
+
+    @GetMapping("user/logout")
+    @ResponseBody
+    public AjaxResult logout() {
+        try {
+            Enumeration<String> em = ServletUtils.getSession().getAttributeNames();
+            while (em.hasMoreElements()) {
+                ServletUtils.getSession().removeAttribute(em.nextElement());
+            }
+            return AjaxResult.success("logout success");
+        } catch (Exception e) {
+            logger.error("logout error: " + e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+
+
     }
 }
