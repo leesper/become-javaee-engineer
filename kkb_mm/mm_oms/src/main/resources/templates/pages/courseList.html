@@ -329,9 +329,18 @@
 							console.log("学科添加请求参数：");
 							console.log(params);
 							// 发送请求
-							this.$message.success("添加成功");
-							this.dialogFormVisible = false;
-							this.getList();
+							// this.$message.success("添加成功");
+							// this.dialogFormVisible = false;
+							// this.getList();
+							axios.post(app_path + "course/add", params).then((response) => {
+								console.log(params);
+								if (response.data.code == 200) {
+									this.$message.success(response.data.msg);
+									this.dialogFormVisible = false;
+								} else {
+									this.$message.error(response.data.msg);
+								}
+							}).finally(() => this.getList());
 						}
 					});
 				},
