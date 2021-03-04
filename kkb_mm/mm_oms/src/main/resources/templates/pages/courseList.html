@@ -227,11 +227,11 @@
 				},
 				// 学科目录
 				goToCatalogView(row) {
-					window.location.href = "catalogList.html?courseId=" + row.id;
+					window.location.href = "catalogList?courseId=" + row.id;
 				},
 				// 学科标签
 				goToTagView(row) {
-					window.location.href = "tagList.html?courseId=" + row.id;
+					window.location.href = "tagList?courseId=" + row.id;
 				},
 				// 新增学科
 				handleCreate() {
@@ -289,8 +289,15 @@
 							let params = this.form;
 							console.log("学科更新请求参数：");
 							console.log(params);
-							this.$message.success("更新成功");
-							this.dialogFormVisible = false;
+							axios.post(app_path + "course/update", params).then((response) => {
+								if (response.data.code == 200) {
+									this.$message.success(response.data.msg);
+									this.getList();
+								} else {
+									this.$message.error(response.data.msg);
+								}
+								this.dialogFormVisible = false;
+							});
 						}
 					});
 				},

@@ -41,4 +41,9 @@ public class CourseServiceImpl implements CourseService {
         PageHelper.startPage(queryPageBean.getPageNum(), queryPageBean.getPageSize());
         return courseMapper.selectByExample(example);
     }
+
+    @Override
+    public int updateCourse(TCourse course) {
+        return courseMapper.updateByPrimaryKeySelective(course);
+    }
 }

@@ -53,4 +53,16 @@ public class CourseController extends BaseController {
         List<TCourse> courses = courseService.findCourseList(queryPageBean);
         return getDataTable(courses);
     }
+
+    @PostMapping("course/update")
+    @ResponseBody
+    public AjaxResult updateCourse(@RequestBody TCourse course) {
+        try {
+            int rows = courseService.updateCourse(course);
+            return toAjax(rows);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error("update course error: " + e.getMessage());
+        }
+    }
 }
