@@ -20,6 +20,46 @@ public class TCourse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String creator;
+
+    private long tagQty;
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public long getTagQty() {
+        return tagQty;
+    }
+
+    public void setTagQty(long tagQty) {
+        this.tagQty = tagQty;
+    }
+
+    public long getCatalogQty() {
+        return catalogQty;
+    }
+
+    public void setCatalogQty(long catalogQty) {
+        this.catalogQty = catalogQty;
+    }
+
+    public long getQuestionQty() {
+        return questionQty;
+    }
+
+    public void setQuestionQty(long questionQty) {
+        this.questionQty = questionQty;
+    }
+
+    private long catalogQty;
+
+    private long questionQty;
+
     public TCourse(Integer id, String name, String icon, Date createDate, Integer isShow, Integer userId, Integer orderNo) {
         this.id = id;
         this.name = name;
