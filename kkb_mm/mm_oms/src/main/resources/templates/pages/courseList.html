@@ -193,80 +193,18 @@
 					}
 					console.log("学科分页列表请求参数：");
 					console.log(params);
-				  // 发送请求获取数据
-					let response = {
-						data:{
-							"code":200,
-							"msg": "获取学科列表成功",
-							"rows": [
-									{
-										"catalogQty": 10,
-										"createDate": "2019-08-08 00:00:00.0",
-										"creator": "admin",
-										"id": 1,
-										"isShow": 0,
-										"name": "Java",
-										"questionQty": 1,
-										"tagQty": 5
-									},
-									{
-										"catalogQty": 10,
-										"createDate": "2019-08-08 00:00:00.0",
-										"creator": "admin",
-										"id": 2,
-										"isShow": 0,
-										"name": "Python",
-										"questionQty": 1,
-										"tagQty": 5
-									},
-									{
-										"catalogQty": 10,
-										"createDate": "2019-08-08 00:00:00.0",
-										"creator": "admin",
-										"id": 3,
-										"isShow": 0,
-										"name": "大数据",
-										"questionQty": 1,
-										"tagQty": 5
-									},
-									{
-										"catalogQty": 10,
-										"createDate": "2019-08-08 00:00:00.0",
-										"creator": "admin",
-										"id": 4,
-										"isShow": 0,
-										"name": "Php",
-										"questionQty": 1,
-										"tagQty": 5
-									},
-									{
-										"catalogQty": 10,
-										"createDate": "2019-08-14 09:01:35.0",
-										"creator": "admin",
-										"id": 8,
-										"isShow": 0,
-										"name": "888",
-										"questionQty": 1,
-										"tagQty": 5
-									},
-									{
-										"catalogQty": 10,
-										"createDate": "2019-08-14 09:01:38.0",
-										"creator": "admin",
-										"id": 9,
-										"isShow": 0,
-										"name": "2",
-										"questionQty": 1,
-										"tagQty": 5
-									}
-								],
-							"total": 15
-							
-						}
-					};
 
-					this.pagination.total = response.data.total;
-					this.items = response.data.rows;
+					axios.post(app_path + "course/findListByPage", params).then((response) => {
+						console.log(response);
+						if (response.data.code == 200) {
+							this.pagination.total = response.data.total;
+							this.items = response.data.rows;
+							this.loading = true;
+						} else {
+							console.log(response.msg);
+							this.$message.error("fail: " + response.msg);
+						}
+					});
 				},
 				// 清除
 				handleRest() {
