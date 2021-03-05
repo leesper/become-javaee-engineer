@@ -11,4 +11,6 @@ public interface CourseService {
     List<TCourse> findCourseList(QueryPageBean queryPageBean);
 
     int updateCourse(TCourse course);
+
+    int deleteCourse(TCourse course);
 }

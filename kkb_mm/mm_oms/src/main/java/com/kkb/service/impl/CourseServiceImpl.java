@@ -46,4 +46,20 @@ public class CourseServiceImpl implements CourseService {
     public int updateCourse(TCourse course) {
         return courseMapper.updateByPrimaryKeySelective(course);
     }
+
+    @Override
+    public int deleteCourse(TCourse course) {
+        TCourseExample example = new TCourseExample();
+        TCourseExample.Criteria criteria = example.createCriteria();
+
+        if (StringUtils.isNotNull(course.getId())) {
+            criteria.andIdEqualTo(course.getId());
+        }
+
+        if (StringUtils.isNotNull(course.getName())) {
+            criteria.andNameEqualTo(course.getName());
+        }
+
+        return courseMapper.deleteByExample(example);
+    }
 }

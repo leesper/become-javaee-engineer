@@ -6,7 +6,6 @@ import com.kkb.page.TableDataInfo;
 import com.kkb.pojo.TCourse;
 import com.kkb.pojo.TUser;
 import com.kkb.service.CourseService;
-import com.kkb.utils.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -64,5 +63,22 @@ public class CourseController extends BaseController {
             logger.error(e.getMessage());
             return AjaxResult.error("update course error: " + e.getMessage());
         }
+    }
+
+    @PostMapping("course/delete")
+    @ResponseBody
+    public AjaxResult deleteCourse(@RequestBody TCourse course) {
+        try {
+            int rows = courseService.deleteCourse(course);
+            return toAjax(rows);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error("delete course error: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("courseList")
+    public String courseList() {
+        return "pages/courseList";
     }
 }

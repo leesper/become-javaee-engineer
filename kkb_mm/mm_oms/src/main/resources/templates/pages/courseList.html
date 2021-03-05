@@ -310,8 +310,19 @@
 					this.$confirm('此操作将永久删除学科 ' + ', 是否继续?', '提示', {
 						type: 'warning'
 					}).then(() => {
-						this.$message.success("删除成功");
-						this.getList();
+						let params = {
+							"id": row.id,
+							"name": row.name,
+						};
+						axios.post(app_path + "course/delete", params).then((response) => {
+							if (response.data.code == 200) {
+								this.$message.success("删除成功");
+								this.getList();
+							} else {
+								this.$message.error(response.data.msg);
+							}
+						});
+
 					}).catch(() => {
 						this.$message.info('已取消操作!')
 					});
