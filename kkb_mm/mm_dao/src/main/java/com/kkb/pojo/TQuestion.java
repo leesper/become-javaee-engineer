@@ -36,6 +36,36 @@ public class TQuestion implements Serializable {
 
     private String analysis;
 
+    private String courseName;
+
+    private String usedQty;
+
+    private String creator;
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getUsedQty() {
+        return usedQty;
+    }
+
+    public void setUsedQty(String usedQty) {
+        this.usedQty = usedQty;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public TQuestion(Integer id, String number, String subject, Integer type, Integer difficulty, String analysisVideo, String remark, Integer isClassic, Integer status, Integer reviewStatus, Date createDate, Integer userId, Integer companyId, Integer catalogId, Integer courseId) {

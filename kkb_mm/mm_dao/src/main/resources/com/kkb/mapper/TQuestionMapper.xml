@@ -463,4 +463,30 @@
       course_id = #{courseId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectIsClassicByPage" resultType="com.kkb.pojo.TQuestion">
+    SELECT
+      10000+tq.id AS number,
+      (SELECT `name` FROM t_course WHERE id = tq.course_id) AS courseName,
+      `type`,
+      `subject`,
+      tq.`create_date` AS createDate,
+      `difficulty`,
+      (SELECT count(*) FROM tr_member_question WHERE question_id = tq.id) AS usedQty,
+      (SELECT username FROM t_user WHERE id = tq.user_id) AS creator,
+      `status`
+    FROM t_question tq
+    <include refid="select_where_by_page"></include>
+  </select>
+  
+  <sql id="select_where_by_page">
+    <where>
+      <if test="params.courseId != null">
+        AND tq.course_id = #{params.courseId}
+      </if>
+      <if test="params.isClassic != null">
+        AND tq.is_classic = #{params.isClassic}
+      </if>
+    </where>
+  </sql>
 </mapper>

@@ -3,6 +3,8 @@ package com.kkb.mapper;
 import com.kkb.pojo.TQuestion;
 import com.kkb.pojo.TQuestionExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TQuestionMapper {
@@ -33,4 +35,6 @@ public interface TQuestionMapper {
     int updateByPrimaryKeyWithBLOBs(TQuestion record);
 
     int updateByPrimaryKey(TQuestion record);
+
+    List<TQuestion> selectIsClassicByPage(@Param("params") Map<String, Object> map);
 }
