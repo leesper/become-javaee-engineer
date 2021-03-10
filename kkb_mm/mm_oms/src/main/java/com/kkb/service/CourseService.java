@@ -13,4 +13,6 @@ public interface CourseService {
     int updateCourse(TCourse course);
 
     int deleteCourse(TCourse course);
+
+    List<TCourse> findListAll();
 }

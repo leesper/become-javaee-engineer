@@ -415,16 +415,16 @@
 				},
 				// 新增试题
 				handleCreate() {
-					window.location.href = "questionEditor.html?questionId=0&is_classic=" + this.is_classic;
+					window.location.href = "questionEditor?questionId=0&is_classic=" + this.is_classic;
 				},
 				// 预览试题
 				handlePreview(row) {
-					window.location.href = "questionPreview.html?questionId=" + row.id + "&is_classic=" + this.is_classic +
+					window.location.href = "questionPreview?questionId=" + row.id + "&is_classic=" + this.is_classic +
 						"&is_examine=0";
 				},
 				// 修改试题
 				handleUpdate(row) {
-					window.location.href = "questionEditor.html?questionId=" + row.id + "&is_classic=" + this.is_classic;
+					window.location.href = "questionEditor?questionId=" + row.id + "&is_classic=" + this.is_classic;
 				},
 				// 删除试题
 				handleDeleted(row) {

@@ -27,4 +27,7 @@ public interface TCourseMapper {
     int updateByPrimaryKeySelective(TCourse record);
 
     int updateByPrimaryKey(TCourse record);
+
+    // query all courses with its catalog and tags
+    List<TCourse> selectListAll();
 }

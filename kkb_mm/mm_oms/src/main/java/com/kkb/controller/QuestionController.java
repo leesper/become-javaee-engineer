@@ -6,6 +6,7 @@ import com.kkb.pojo.TQuestion;
 import com.kkb.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,5 +32,10 @@ public class QuestionController extends BaseController{
             tableDataInfo.setMsg(e.getMessage());
             return tableDataInfo;
         }
+    }
+
+    @GetMapping("questionEditor")
+    public String questionEditor(int questionId, int is_classic) {
+        return "pages/questionEditor";
     }
 }

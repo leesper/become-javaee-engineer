@@ -62,4 +62,10 @@ public class CourseServiceImpl implements CourseService {
 
         return courseMapper.deleteByExample(example);
     }
+
+    @Override
+    public List<TCourse> findListAll() {
+        List<TCourse> courses = courseMapper.selectListAll();
+        return courses;
+    }
 }

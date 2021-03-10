@@ -81,4 +81,16 @@ public class CourseController extends BaseController {
     public String courseList() {
         return "pages/courseList";
     }
+
+    @GetMapping("course/findListAll")
+    @ResponseBody
+    public AjaxResult findListForQuestion() {
+        try {
+            List<TCourse> courses = courseService.findListAll();
+            return AjaxResult.success(courses);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
 }

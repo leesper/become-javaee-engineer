@@ -2,6 +2,7 @@ package com.kkb.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class TCourse implements Serializable {
     private Integer id;
@@ -23,6 +24,26 @@ public class TCourse implements Serializable {
     private String creator;
 
     private long tagQty;
+
+    private List<TCatalog> catalogList;
+
+    private List<TTag> tagList;
+
+    public List<TCatalog> getCatalogList() {
+        return catalogList;
+    }
+
+    public void setCatalogList(List<TCatalog> catalogList) {
+        this.catalogList = catalogList;
+    }
+
+    public List<TTag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<TTag> tagList) {
+        this.tagList = tagList;
+    }
 
     public String getCreator() {
         return creator;

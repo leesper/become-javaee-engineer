@@ -242,4 +242,10 @@
       order_no = #{orderNo,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectCatalogListByCourseId" resultType="com.kkb.pojo.TCatalog">
+    SELECT `id`, `name`
+    FROM t_catalog
+    WHERE `course_id` = #{id}
+  </select>
 </mapper>
