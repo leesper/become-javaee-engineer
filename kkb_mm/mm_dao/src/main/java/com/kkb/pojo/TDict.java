@@ -1,6 +1,7 @@
 package com.kkb.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class TDict implements Serializable {
     private Integer id;
@@ -18,6 +19,16 @@ public class TDict implements Serializable {
     private String dataDesc;
 
     private Integer orderNo;
+
+    private List<TDict> subList;
+
+    public List<TDict> getSubList() {
+        return subList;
+    }
+
+    public void setSubList(List<TDict> subList) {
+        this.subList = subList;
+    }
 
     private static final long serialVersionUID = 1L;
 

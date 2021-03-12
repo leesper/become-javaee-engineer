@@ -668,124 +668,138 @@
             intDicts() {
                 let t = this;
                 // 获取省市数据
-                let response = {
-                    data:{
-                        "code":200,
-                       "msg":"操作成功",
-                        "data": [
-                            {
-                                "dataValue": "北京",
-                                "id": 1,
-                                "subList": [
-                                    {
-                                        "dataValue": "北京",
-                                        "id": 9
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "上海",
-                                "id": 2,
-                                "subList": [
-                                    {
-                                        "dataValue": "上海",
-                                        "id": 10
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "天津",
-                                "id": 3,
-                                "subList": [
-                                    {
-                                        "dataValue": "天津",
-                                        "id": 11
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "广东省",
-                                "id": 4,
-                                "subList": [
-                                    {
-                                        "dataValue": "广州",
-                                        "id": 12
-                                    },
-                                    {
-                                        "dataValue": "深圳",
-                                        "id": 13
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "浙江省",
-                                "id": 5,
-                                "subList": [
-                                    {
-                                        "dataValue": "杭州",
-                                        "id": 14
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "山东省",
-                                "id": 6,
-                                "subList": [
-                                    {
-                                        "dataValue": "济南",
-                                        "id": 15
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "四川省",
-                                "id": 7,
-                                "subList": [
-                                    {
-                                        "dataValue": "成都",
-                                        "id": 16
-                                    }
-                                ]
-                            },
-                            {
-                                "dataValue": "陕西省",
-                                "id": 8,
-                                "subList": [
-                                    {
-                                        "dataValue": "西安",
-                                        "id": 17
-                                    }
-                                ]
-                            }
-                        ]
+                // let response = {
+                //     data:{
+                //         "code":200,
+                //        "msg":"操作成功",
+                //         "data": [
+                //             {
+                //                 "dataValue": "北京",
+                //                 "id": 1,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "北京",
+                //                         "id": 9
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "上海",
+                //                 "id": 2,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "上海",
+                //                         "id": 10
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "天津",
+                //                 "id": 3,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "天津",
+                //                         "id": 11
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "广东省",
+                //                 "id": 4,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "广州",
+                //                         "id": 12
+                //                     },
+                //                     {
+                //                         "dataValue": "深圳",
+                //                         "id": 13
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "浙江省",
+                //                 "id": 5,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "杭州",
+                //                         "id": 14
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "山东省",
+                //                 "id": 6,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "济南",
+                //                         "id": 15
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "四川省",
+                //                 "id": 7,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "成都",
+                //                         "id": 16
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "dataValue": "陕西省",
+                //                 "id": 8,
+                //                 "subList": [
+                //                     {
+                //                         "dataValue": "西安",
+                //                         "id": 17
+                //                     }
+                //                 ]
+                //             }
+                //         ]
+                //     }
+                // }
+                axios.get(app_path + "dict/findListAll").then((response) => {
+                    if (response.data.code == 200) {
+                        t.dicts = response.data.data;
+                    } else {
+                        this.$message.error(response.data.msg);
                     }
-                }
-                t.dicts = response.data.data;
+                });
+
             },
             // 方向下拉列表
             initIndustrys() {
                 let t = this;
-                let response = {
-                    data: {
-                        "code":200,
-                       "msg":"操作成功",
-                        "data": [
-                            {
-                                "id": 1,
-                                "name": "电商平台"
-                            },
-                            {
-                                "id": 2,
-                                "name": "金融服务"
-                            },
-                            {
-                                "id": 3,
-                                "name": "移动通讯"
-                            }
-                        ]
+                // let response = {
+                //     data: {
+                //         "code":200,
+                //        "msg":"操作成功",
+                //         "data": [
+                //             {
+                //                 "id": 1,
+                //                 "name": "电商平台"
+                //             },
+                //             {
+                //                 "id": 2,
+                //                 "name": "金融服务"
+                //             },
+                //             {
+                //                 "id": 3,
+                //                 "name": "移动通讯"
+                //             }
+                //         ]
+                //     }
+                // }
+                axios.get(app_path + "industry/findListAll").then((response) => {
+                    if (response.data.code == 200) {
+                        t.industrys = response.data.data;
+                    } else {
+                        this.$message.error(response.data.msg);
                     }
-                }
-                t.industrys = response.data.data;
+                });
+
             },
             // 切换题型，重置选项选中状态
             changeType(val) {

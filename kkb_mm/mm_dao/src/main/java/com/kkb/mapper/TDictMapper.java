@@ -27,4 +27,6 @@ public interface TDictMapper {
     int updateByPrimaryKeySelective(TDict record);
 
     int updateByPrimaryKey(TDict record);
+
+    List<TDict> selectDictSubList();
 }

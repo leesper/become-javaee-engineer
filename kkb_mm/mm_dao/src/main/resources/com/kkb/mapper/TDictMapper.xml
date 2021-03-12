@@ -257,4 +257,20 @@
       order_no = #{orderNo,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="dictSubList" type="com.kkb.pojo.TDict">
+    <id column="id" property="id" />
+    <collection property="subList"
+                javaType="java.util.ArrayList"
+                ofType="com.kkb.pojo.TDict"
+                column="id"
+                select="selectSubList" />
+  </resultMap>
+
+  <select id="selectDictSubList" resultMap="dictSubList">
+    SELECT id, data_value AS dataValue FROM t_dict WHERE pid IS null
+  </select>
+
+  <select id="selectSubList" resultType="com.kkb.pojo.TDict">
+    SELECT id, data_value AS dataValue FROM t_dict WHERE pid = #{id}
+  </select>
 </mapper>
