@@ -2,6 +2,7 @@ package com.kkb.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class TCompany implements Serializable {
     private Integer id;
@@ -23,6 +24,16 @@ public class TCompany implements Serializable {
     private Integer userId;
 
     private Integer orderNo;
+
+    private List<TIndustry> industryList;
+
+    public List<TIndustry> getIndustryList() {
+        return industryList;
+    }
+
+    public void setIndustryList(List<TIndustry> industryList) {
+        this.industryList = industryList;
+    }
 
     private static final long serialVersionUID = 1L;
 

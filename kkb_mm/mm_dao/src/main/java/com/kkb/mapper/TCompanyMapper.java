@@ -27,4 +27,6 @@ public interface TCompanyMapper {
     int updateByPrimaryKeySelective(TCompany record);
 
     int updateByPrimaryKey(TCompany record);
+
+    List<TCompany> selectListAll();
 }
