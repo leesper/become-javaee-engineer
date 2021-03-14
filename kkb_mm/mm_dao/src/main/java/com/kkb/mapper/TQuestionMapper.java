@@ -14,6 +14,7 @@ public interface TQuestionMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    // add new question
     int insert(TQuestion record);
 
     int insertSelective(TQuestion record);
@@ -30,6 +31,7 @@ public interface TQuestionMapper {
 
     int updateByExample(@Param("record") TQuestion record, @Param("example") TQuestionExample example);
 
+    // update question as necessary
     int updateByPrimaryKeySelective(TQuestion record);
 
     int updateByPrimaryKeyWithBLOBs(TQuestion record);

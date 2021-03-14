@@ -136,22 +136,18 @@ public class TCompany implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", shortName=").append(shortName);
-        sb.append(", fullName=").append(fullName);
-        sb.append(", isFamous=").append(isFamous);
-        sb.append(", state=").append(state);
-        sb.append(", remark=").append(remark);
-        sb.append(", createDate=").append(createDate);
-        sb.append(", cityId=").append(cityId);
-        sb.append(", userId=").append(userId);
-        sb.append(", orderNo=").append(orderNo);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "TCompany{" +
+                "id=" + id +
+                ", shortName='" + shortName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", isFamous=" + isFamous +
+                ", state=" + state +
+                ", remark='" + remark + '\'' +
+                ", createDate=" + createDate +
+                ", cityId=" + cityId +
+                ", userId=" + userId +
+                ", orderNo=" + orderNo +
+                ", industryList=" + industryList +
+                '}';
     }
 }

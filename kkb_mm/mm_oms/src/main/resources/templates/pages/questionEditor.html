@@ -921,25 +921,42 @@
                 formData.tagList = tagList;
                 console.log("新增更新题库请求参数：");
                 console.log(this.formData);
-                this.$message.success("操作成功");
-                // 返回到上一级
-                if (!this.formData.is_classic) {
-                    setTimeout(function () {
-                            //window.location.href = "questionBasicList.html";
+                // this.$message.success("操作成功");
+                // // 返回到上一级
+                // if (!this.formData.is_classic) {
+                //     setTimeout(function () {
+                //             //window.location.href = "questionBasicList.html";
+                //         }
+                //         , 1000);
+                // } else {
+                //     setTimeout(function () {
+                //         //window.location.href = "questionClassicList.html";
+                //     }, 1000);
+                // }
+
+                axios.post(app_path + "question/addOrUpdate", this.formData).then((response) => {
+                    if (response.data.code == 200) {
+                        this.$message.success("操作成功");
+                        // 返回到上一级
+                        if (!this.formData.is_classic) {
+                            setTimeout(function () {
+                                    window.location.href = "../questionBasicList";
+                                }
+                                , 1000);
+                        } else {
+                            setTimeout(function () {
+                                window.location.href = "../questionClassicList";
+                            }, 1000);
                         }
-                        , 1000);
-                } else {
-                    setTimeout(function () {
-                        //window.location.href = "questionClassicList.html";
-                    }, 1000);
-                }
+                    }
+                })
             },
             // 取消提交
             cancelItem() {
                 if (!this.formData.is_classic) {
-                    window.location.href = "questionBasicList.html";
+                    window.location.href = "../questionBasicList";
                 } else {
-                    window.location.href = "questionClassicList.html";
+                    window.location.href = "../questionClassicList";
                 }
             }
         }
