@@ -469,7 +469,7 @@
   
   <select id="selectIsClassicByPage" resultType="com.kkb.pojo.TQuestion">
     SELECT
-      10000+tq.id AS number,
+      id, 10000+tq.id AS number,
       (SELECT `name` FROM t_course WHERE id = tq.course_id) AS courseName,
       `type`,
       `subject`,

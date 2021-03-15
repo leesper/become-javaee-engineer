@@ -49,6 +49,16 @@ public class TQuestion implements Serializable {
 
     private List<TTag> tagList;
 
+    private TReviewLog reviewLog;
+
+    public TReviewLog getReviewLog() {
+        return reviewLog;
+    }
+
+    public void setReviewLog(TReviewLog reviewLog) {
+        this.reviewLog = reviewLog;
+    }
+
     public TCompany getCompany() {
         return company;
     }

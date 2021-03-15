@@ -227,4 +227,13 @@
       create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectLastByQuestionId" resultType="com.kkb.pojo.TReviewLog">
+    SELECT `id`, `comments`, `status`,
+           `create_date` AS createDate,
+           (SELECT `username` FROM `t_user` WHERE `id` = `user_id`) AS reviewer
+    FROM `t_review_log`
+    WHERE `question_id` = #{questionId}
+    ORDER BY `create_date` DESC
+    LIMIT 0, 1
+  </select>
 </mapper>

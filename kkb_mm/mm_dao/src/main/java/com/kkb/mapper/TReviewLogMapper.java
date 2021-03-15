@@ -27,4 +27,6 @@ public interface TReviewLogMapper {
     int updateByPrimaryKeySelective(TReviewLog record);
 
     int updateByPrimaryKey(TReviewLog record);
+
+    TReviewLog selectLastByQuestionId(Integer questionId);
 }

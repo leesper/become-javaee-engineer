@@ -16,7 +16,17 @@ public class TReviewLog implements Serializable {
 
     private Date createDate;
 
+    private String reviewer;
+
     private static final long serialVersionUID = 1L;
+
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
 
     public TReviewLog(Integer id, String comments, Integer status, Integer questionId, Integer userId, Date createDate) {
         this.id = id;

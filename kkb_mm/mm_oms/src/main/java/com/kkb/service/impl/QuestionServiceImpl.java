@@ -15,9 +15,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.kkb.constant.QuestionConst.ClassicStatus.CLASSIC_STATUS_NO;
-
 @Service
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
@@ -33,7 +30,10 @@ public class QuestionServiceImpl implements QuestionService {
     private TCompanyMapper companyMapper;
 
     @Autowired
-    TrCompanyIndustryMapper companyIndustryMapper;
+    private TrCompanyIndustryMapper companyIndustryMapper;
+
+    @Autowired
+    private TReviewLogMapper reviewLogMapper;
 
     @Override
     public List<TQuestion> findListByPage(QueryPageBean queryPageBean) {
@@ -69,6 +69,31 @@ public class QuestionServiceImpl implements QuestionService {
         System.out.println("updated industries: " + res);
 
         return res;
+    }
+
+    @Override
+    public List<TQuestion> findClassicByPage(QueryPageBean queryPageBean) {
+        Map params = queryPageBean.getQueryParams();
+        if (params == null) {
+            params = new HashMap();
+        }
+
+        params.put("isClassic", 1);
+        PageHelper.startPage(queryPageBean.getPageNum(), queryPageBean.getPageSize());
+        List<TQuestion> questionList = questionMapper.selectIsClassicByPage(params);
+
+        for(TQuestion question : questionList) {
+            TReviewLog reviewLog = reviewLogMapper.selectLastByQuestionId(question.getId());
+            if (StringUtils.isNull(reviewLog)) {
+                reviewLog = new TReviewLog();
+                reviewLog.setStatus(QuestionConst.ReviewStatus.PRE_REVIEW.ordinal());
+                reviewLog.setComments("");
+                reviewLog.setReviewer("");
+                reviewLog.setCreateDate(null);
+            }
+            question.setReviewLog(reviewLog);
+        }
+        return questionList;
     }
 
     private int updateQuestion(TQuestion question) {

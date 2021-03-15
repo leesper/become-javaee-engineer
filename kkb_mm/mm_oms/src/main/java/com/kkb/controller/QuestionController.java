@@ -57,4 +57,24 @@ public class QuestionController extends BaseController{
             return AjaxResult.error(e.getMessage());
         }
     }
+
+    @PostMapping("question/findClassicListByPage")
+    @ResponseBody
+    public TableDataInfo findClassicListByPage(@RequestBody QueryPageBean queryPageBean) {
+        try {
+            List<TQuestion> questionList = questionService.findClassicByPage(queryPageBean);
+            return getDataTable(questionList);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            TableDataInfo tableDataInfo = new TableDataInfo();
+            tableDataInfo.setCode(500);
+            tableDataInfo.setMsg(e.getMessage());
+            return tableDataInfo;
+        }
+    }
+
+    @GetMapping("questionPreview")
+    public String questionPreview(int questionId, int is_classic, int is_examine) {
+        return "pages/questionPreview";
+    }
 }
