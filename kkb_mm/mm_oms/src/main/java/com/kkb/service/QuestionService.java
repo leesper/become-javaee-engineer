@@ -14,4 +14,6 @@ public interface QuestionService {
     List<TQuestion> findClassicByPage(QueryPageBean queryPageBean);
 
     TQuestion findById(int questionId);
+
+    int deleteById(int questionId);
 }

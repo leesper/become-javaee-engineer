@@ -122,6 +122,30 @@ public class QuestionServiceImpl implements QuestionService {
         return question;
     }
 
+    @Override
+    @Transactional
+    public int deleteById(int questionId) {
+        TQuestion question = questionMapper.selectById(questionId);
+        deleteQuestionItems(question);
+        deleteQuestionTag(question);
+        int res = questionMapper.deleteByPrimaryKey(questionId);
+        return res;
+    }
+
+    private void deleteQuestionItems(TQuestion question) {
+        for (TQuestionItem item : question.getQuestionItemList()) {
+            questionItemMapper.deleteByPrimaryKey(item.getId());
+        }
+    }
+
+    private void deleteQuestionTag(TQuestion question) {
+        TrQuestionTagExample example = new TrQuestionTagExample();
+        TrQuestionTagExample.Criteria criteria = example.createCriteria();
+        criteria.andQuestionIdEqualTo(question.getId());
+
+        questionTagMapper.deleteByExample(example);
+    }
+
     private void initQuestionCatalog(TQuestion question) {
         TCatalog catalog = catalogMapper.selectByPrimaryKey(question.getCatalogId());
         question.setCatalog(catalog);

@@ -8,6 +8,7 @@ import com.kkb.pojo.TUser;
 import com.kkb.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -85,6 +86,19 @@ public class QuestionController extends BaseController{
             logger.debug("query question id: " + questionId);
             TQuestion question = questionService.findById(questionId);
             return AjaxResult.success(question);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
+
+    @PostMapping("question/deleteById")
+    @ResponseBody
+    public AjaxResult deleteById(@Validated @RequestBody TQuestion question) {
+        try {
+            logger.debug("delete question id: " + question.getId());
+            int res = questionService.deleteById(question.getId());
+            return toAjax(res);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());
