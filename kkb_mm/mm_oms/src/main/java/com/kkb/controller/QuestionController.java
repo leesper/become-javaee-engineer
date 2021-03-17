@@ -77,4 +77,17 @@ public class QuestionController extends BaseController{
     public String questionPreview(int questionId, int is_classic, int is_examine) {
         return "pages/questionPreview";
     }
+
+    @GetMapping("question/findById")
+    @ResponseBody
+    public AjaxResult findById(int questionId) {
+        try {
+            logger.debug("query question id: " + questionId);
+            TQuestion question = questionService.findById(questionId);
+            return AjaxResult.success(question);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
 }

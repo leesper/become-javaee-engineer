@@ -51,6 +51,26 @@ public class TQuestion implements Serializable {
 
     private TReviewLog reviewLog;
 
+    private List<String> tagNameList;
+
+    private TCatalog catalog;
+
+    public TCatalog getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(TCatalog catalog) {
+        this.catalog = catalog;
+    }
+
+    public List<String> getTagNameList() {
+        return tagNameList;
+    }
+
+    public void setTagNameList(List<String> tagNameList) {
+        this.tagNameList = tagNameList;
+    }
+
     public TReviewLog getReviewLog() {
         return reviewLog;
     }

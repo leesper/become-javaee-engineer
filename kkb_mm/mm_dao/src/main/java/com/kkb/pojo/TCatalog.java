@@ -18,9 +18,19 @@ public class TCatalog implements Serializable {
 
     private Integer orderNo;
 
+    private String courseName;
+
     private static final long serialVersionUID = 1L;
 
-    public TCatalog(Integer id, String name, Date createDate, Integer status, Integer userId, Integer courseId, Integer orderNo) {
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public TCatalog(Integer id, String name, Date createDate, Integer status, Integer userId, Integer courseId, Integer orderNo, String courseName) {
         this.id = id;
         this.name = name;
         this.createDate = createDate;
@@ -28,6 +38,7 @@ public class TCatalog implements Serializable {
         this.userId = userId;
         this.courseId = courseId;
         this.orderNo = orderNo;
+        this.courseName = courseName;
     }
 
     public TCatalog() {

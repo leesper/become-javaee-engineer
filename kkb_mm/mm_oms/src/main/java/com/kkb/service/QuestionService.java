@@ -12,4 +12,6 @@ public interface QuestionService {
     int addOrUpdate(TQuestion question);
 
     List<TQuestion> findClassicByPage(QueryPageBean queryPageBean);
+
+    TQuestion findById(int questionId);
 }

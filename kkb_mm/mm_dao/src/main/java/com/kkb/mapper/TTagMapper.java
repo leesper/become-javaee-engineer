@@ -27,4 +27,6 @@ public interface TTagMapper {
     int updateByPrimaryKeySelective(TTag record);
 
     int updateByPrimaryKey(TTag record);
+
+    List<TTag> selectTagListByQuestionId(Integer questionId);
 }

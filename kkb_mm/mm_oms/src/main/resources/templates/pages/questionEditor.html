@@ -317,102 +317,109 @@
             // 初始化试题
             initFormData() {
                 console.log("初始化试题返回结果：");
-                let response = {
-                    data:{
-                        "code":200,
-                       "msg":"操作成功",
-                        "data": {
-                            "analysis": "<p>图片选择</p>",
-                            "analysisVideo": "",
-                            "answerIsRight": false,
-                            "catalog": {
-                                "courseId": 1,
-                                "courseName": "Java",
-                                "createDate": "2019-08-08 00:00:00.0",
-                                "id": 1,
-                                "name": "Java基础",
-                                "status": 0,
-                                "userId": 1
-                            },
-                            "catalogId": 1,
-                            "company": {
-                                "city": "北京",
-                                "id": 1,
-                                "industryList": [
-                                    {
-                                        "id": 1,
-                                        "name": "电商平台"
-                                    },
-                                    {
-                                        "id": 2,
-                                        "name": "金融服务"
-                                    }
-                                ],
-                                "industryNameList": [
-                                    "电商平台",
-                                    "金融服务"
-                                ],
-                                "shortName": "北京淘宝网"
-                            },
-                            "companyId": 1,
-                            "createDate": "2019-08-22 10:52:49.0",
-                            "difficulty": 1,
-                            "id": 654,
-                            "isFamous": false,
-                            "isFavorite": false,
-                            "isFinished": false,
-                            "number": "",
-                            "questionItemList": [
-                                {
-                                    "content": "aaa",
-                                    "id": 72,
-                                    "imgUrl": "",
-                                    "isRight": true
-                                },
-                                {
-                                    "content": "bbb",
-                                    "id": 73,
-                                    "imgUrl": "",
-                                    "isRight": false
-                                },
-                                {
-                                    "content": "cccc",
-                                    "id": 74,
-                                    "imgUrl": "",
-                                    "isRight": false
-                                },
-                                {
-                                    "content": "ddd",
-                                    "id": 75,
-                                    "imgUrl": "",
-                                    "isRight": false
-                                }
-                            ],
-                            "remark": "图片选择",
-                            "reviewStatus": 0,
-                            "status": 0,
-                            "subject": "<p>图片选择</p>",
-                            "tagList": [
-                                {
-                                    "id": 1,
-                                    "name": "String字符串"
-                                },
-                                {
-                                    "id": 2,
-                                    "name": "Java类与对象"
-                                }
-                            ],
-                            "tagNameList": [
-                                "String字符串",
-                                "Java类与对象"
-                            ],
-                            "type": 1,
-                            "userId": 1
-                        }
+                // let response = {
+                //     data:{
+                //         "code":200,
+                //        "msg":"操作成功",
+                //         "data": {
+                //             "analysis": "<p>图片选择</p>",
+                //             "analysisVideo": "",
+                //             "answerIsRight": false,
+                //             "catalog": {
+                //                 "courseId": 1,
+                //                 "courseName": "Java",
+                //                 "createDate": "2019-08-08 00:00:00.0",
+                //                 "id": 1,
+                //                 "name": "Java基础",
+                //                 "status": 0,
+                //                 "userId": 1
+                //             },
+                //             "catalogId": 1,
+                //             "company": {
+                //                 "city": "北京",
+                //                 "id": 1,
+                //                 "industryList": [
+                //                     {
+                //                         "id": 1,
+                //                         "name": "电商平台"
+                //                     },
+                //                     {
+                //                         "id": 2,
+                //                         "name": "金融服务"
+                //                     }
+                //                 ],
+                //                 "industryNameList": [
+                //                     "电商平台",
+                //                     "金融服务"
+                //                 ],
+                //                 "shortName": "北京淘宝网"
+                //             },
+                //             "companyId": 1,
+                //             "createDate": "2019-08-22 10:52:49.0",
+                //             "difficulty": 1,
+                //             "id": 654,
+                //             "isFamous": false,
+                //             "isFavorite": false,
+                //             "isFinished": false,
+                //             "number": "",
+                //             "questionItemList": [
+                //                 {
+                //                     "content": "aaa",
+                //                     "id": 72,
+                //                     "imgUrl": "",
+                //                     "isRight": true
+                //                 },
+                //                 {
+                //                     "content": "bbb",
+                //                     "id": 73,
+                //                     "imgUrl": "",
+                //                     "isRight": false
+                //                 },
+                //                 {
+                //                     "content": "cccc",
+                //                     "id": 74,
+                //                     "imgUrl": "",
+                //                     "isRight": false
+                //                 },
+                //                 {
+                //                     "content": "ddd",
+                //                     "id": 75,
+                //                     "imgUrl": "",
+                //                     "isRight": false
+                //                 }
+                //             ],
+                //             "remark": "图片选择",
+                //             "reviewStatus": 0,
+                //             "status": 0,
+                //             "subject": "<p>图片选择</p>",
+                //             "tagList": [
+                //                 {
+                //                     "id": 1,
+                //                     "name": "String字符串"
+                //                 },
+                //                 {
+                //                     "id": 2,
+                //                     "name": "Java类与对象"
+                //                 }
+                //             ],
+                //             "tagNameList": [
+                //                 "String字符串",
+                //                 "Java类与对象"
+                //             ],
+                //             "type": 1,
+                //             "userId": 1
+                //         }
+                //     }
+                //
+                // }
+                axios.get(app_path + "question/findById?questionId=" + this.questionId).then((response) => {
+                    if (response.data.code == 200) {
+                        this.transformFormData(response.data.data);
+                    } else {
+                        this.$message.error(response.data.msg);
                     }
+                });
 
-                }
-                this.transformFormData(response.data.data);
             },
             // 转换后端返回的数据
             transformFormData(result) {

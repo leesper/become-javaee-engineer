@@ -27,6 +27,26 @@ public class TCompany implements Serializable {
 
     private List<TIndustry> industryList;
 
+    private List<String> industryNameList;
+
+    private String city;
+
+    public List<String> getIndustryNameList() {
+        return industryNameList;
+    }
+
+    public void setIndustryNameList(List<String> industryNameList) {
+        this.industryNameList = industryNameList;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public List<TIndustry> getIndustryList() {
         return industryList;
     }

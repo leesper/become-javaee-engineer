@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @Service
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
@@ -34,6 +32,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private TReviewLogMapper reviewLogMapper;
+
+    @Autowired
+    private TCatalogMapper catalogMapper;
+
+    @Autowired
+    private TTagMapper tagMapper;
+
+    @Autowired
+    private TIndustryMapper industryMapper;
 
     @Override
     public List<TQuestion> findListByPage(QueryPageBean queryPageBean) {
@@ -94,6 +101,52 @@ public class QuestionServiceImpl implements QuestionService {
             question.setReviewLog(reviewLog);
         }
         return questionList;
+    }
+
+    @Override
+    public TQuestion findById(int questionId) {
+        System.out.println("question id: " + questionId);
+
+        // query question basic info with its options
+        TQuestion question = questionMapper.selectById(questionId);
+
+        // query course with its catalog
+        initQuestionCatalog(question);
+
+        // query tags
+        initQuestionTag(question);
+
+        // query company info
+        initQuestionCompany(question);
+
+        return question;
+    }
+
+    private void initQuestionCatalog(TQuestion question) {
+        TCatalog catalog = catalogMapper.selectByPrimaryKey(question.getCatalogId());
+        question.setCatalog(catalog);
+    }
+
+    private void initQuestionTag(TQuestion question) {
+        List<TTag> tags = tagMapper.selectTagListByQuestionId(question.getId());
+        question.setTagList(tags);
+        List<String> tagNameList = new ArrayList<>();
+        for (TTag tag: tags) {
+            tagNameList.add(tag.getName());
+        }
+        question.setTagNameList(tagNameList);
+    }
+
+    private void initQuestionCompany(TQuestion question) {
+        TCompany company = companyMapper.selectByIdForQuestion(question.getCompanyId());
+        List<TIndustry> industries = industryMapper.selectIndustryListByCompany(question.getCompanyId());
+        List<String> industryNameList = new ArrayList<>();
+        for (TIndustry industry : industries) {
+            industryNameList.add(industry.getName());
+        }
+        company.setIndustryList(industries);
+        company.setIndustryNameList(industryNameList);
+        question.setCompany(company);
     }
 
     private int updateQuestion(TQuestion question) {

@@ -39,4 +39,6 @@ public interface TQuestionMapper {
     int updateByPrimaryKey(TQuestion record);
 
     List<TQuestion> selectIsClassicByPage(@Param("params") Map<String, Object> map);
+
+    TQuestion selectById(int questionId);
 }

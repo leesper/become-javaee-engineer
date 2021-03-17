@@ -1,5 +1,6 @@
 package com.kkb.mapper;
 
+import com.kkb.pojo.TCompany;
 import com.kkb.pojo.TIndustry;
 import com.kkb.pojo.TIndustryExample;
 import java.util.List;
@@ -27,4 +28,6 @@ public interface TIndustryMapper {
     int updateByPrimaryKeySelective(TIndustry record);
 
     int updateByPrimaryKey(TIndustry record);
+
+    List<TIndustry> selectIndustryListByCompany(Integer id);
 }
