@@ -300,8 +300,17 @@
                     status: status,
                     comments: ''
                 };
-                this.$message.success("审核通过");
-                window.location.href = "questionClassicList.html";
+                axios.post(app_path + "review/add", params).then((response) => {
+                    if (response.data.code == 200) {
+                        this.$message.success(response.data.msg);
+                        setTimeout(function() {
+                            window.location.href = "../questionClassicList";
+                        }, 1000);
+                    } else {
+                        this.$message.error(response.data.msg);
+                    }
+                });
+
             }
         }
     })
