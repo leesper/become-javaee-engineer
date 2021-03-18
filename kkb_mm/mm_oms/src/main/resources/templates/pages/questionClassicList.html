@@ -553,20 +553,24 @@
 						type: 'warning'
 					}).then(() => {
 						let params = {
-							questionId: row.id
+							"id": row.id,
 						};
 						console.log("试题下架请求参数：");
 						console.log(params);
 
-						let response = {
-							"flag": true,
-							"message": "试题下架成功"
-						};
-						console.log("试题下架返回数据：");
-						console.log(response);
-						if (response.flag) {
-							this.$message.success(response.message);
-						}
+						axios.post(app_path + "question/offline", params).then((response) => {
+							console.log("试题下架返回数据：");
+							console.log(response);
+							if (response.data.code == 200) {
+								this.$message.success(response.data.msg);
+								this.getList();
+							} else {
+								this.$message.error(response.data.msg);
+							}
+						});
+
+
+
 					}).catch(() => {
 						this.$message.info('已取消操作!');
 					});
@@ -577,20 +581,20 @@
 						type: 'warning'
 					}).then(() => {
 						let params = {
-							questionId: row.id
+							"id": row.id,
 						};
 						console.log("试题删除请求参数：");
 						console.log(params);
 
-						let response = {
-							"flag": true,
-							"message": "试题删除成功"
-						};
-						console.log("试题删除返回数据：");
-						console.log(response);
-						if (response.flag) {
-							this.$message.success(response.message);
-						}
+						axios.post(app_path + "question/deleteById", params).then((response) => {
+							console.log(response);
+							if (response.data.code == 200) {
+								this.$message.success(response.data.msg);
+								this.getList();
+							} else {
+								this.$message.error(response.data.msg);
+							}
+						});
 					}).catch(() => {
 						this.$message.info('已取消操作!');
 					});

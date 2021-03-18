@@ -104,4 +104,19 @@ public class QuestionController extends BaseController{
             return AjaxResult.error(e.getMessage());
         }
     }
+
+    @PostMapping("question/offline")
+    @ResponseBody
+    public AjaxResult offline(@Validated @RequestBody TQuestion question) {
+        try {
+            int res = questionService.updateById(question.getId());
+            if (res == 0) {
+                return AjaxResult.success("试题处于预发布状态，请先发布");
+            }
+            return toAjax(res);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
 }

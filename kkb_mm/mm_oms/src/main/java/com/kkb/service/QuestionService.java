@@ -16,4 +16,6 @@ public interface QuestionService {
     TQuestion findById(int questionId);
 
     int deleteById(int questionId);
+
+    int updateById(int questionId);
 }

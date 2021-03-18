@@ -128,8 +128,31 @@ public class QuestionServiceImpl implements QuestionService {
         TQuestion question = questionMapper.selectById(questionId);
         deleteQuestionItems(question);
         deleteQuestionTag(question);
+        deleteQuestionReview(question);
         int res = questionMapper.deleteByPrimaryKey(questionId);
         return res;
+    }
+
+    @Override
+    public int updateById(int questionId) {
+        TQuestion question = questionMapper.selectByPrimaryKey(questionId);
+
+        if (QuestionConst.Status.PRE_PUBLISH.ordinal() == question.getStatus()) {
+            return 0;
+        }
+
+        question.setStatus(QuestionConst.Status.PUBLISHED_OFFLINE.ordinal());
+        question.setReviewStatus(QuestionConst.ReviewStatus.REVIEWED.ordinal());
+        int res = questionMapper.updateByPrimaryKeySelective(question);
+        return res;
+    }
+
+    private void deleteQuestionReview(TQuestion question) {
+        TReviewLogExample example = new TReviewLogExample();
+        TReviewLogExample.Criteria criteria = example.createCriteria();
+        criteria.andQuestionIdEqualTo(question.getId());
+
+        reviewLogMapper.deleteByExample(example);
     }
 
     private void deleteQuestionItems(TQuestion question) {

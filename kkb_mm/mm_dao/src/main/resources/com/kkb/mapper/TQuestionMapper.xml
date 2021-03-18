@@ -490,6 +490,9 @@
       <if test="params.isClassic != null">
         AND tq.is_classic = #{params.isClassic}
       </if>
+      <if test="params.reviewStatus != null">
+        AND tq.review_status = #{params.reviewStatus}
+      </if>
     </where>
   </sql>
   
