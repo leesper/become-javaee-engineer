@@ -16,7 +16,7 @@ Page({
   },
   onLoad: function(option) {
     console.log("activate onLoad");
-    this.loadSubjects()
+    // this.loadSubjects()
     this.loadCities()
 
     this.setData({
@@ -71,11 +71,15 @@ Page({
     }
     wx.getLocation({
       success: function(res) {
-        let lat = res.longitude
-        let lng = res.latitude
+        // let lat = res.longitude
+        // let lng = res.latitude
+        console.log("latitude " + res.latitude);
+        console.log("longtitude" + res.longitude);
+        let lat = res.latitude
+        let lng = res.longitude
         data = {
           ...data,
-          location: `${lat},${lng}`
+          location: `${lng},${lat}`
         }
       },
       fail: function() {
@@ -87,13 +91,13 @@ Page({
       },
       complete: function() {
         app.api
-          .baseCitys(data)
+          .baseCities(data)
           .then(res => {
-            console.log(res.data.citys)
+            console.log(res.data.data.cities)
             _this.setData({
-              currentCityID: res.data.location.id,
-              currentCity: res.data.location.title,
-              cityList: res.data.citys
+              currentCityID: res.data.data.location.id,
+              currentCity: res.data.data.location.title,
+              cityList: res.data.data.cities
             })
           })
           .catch(res => {

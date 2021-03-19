@@ -22,6 +22,18 @@ public class TDict implements Serializable {
 
     private List<TDict> subList;
 
+    private String title;
+
+    private static final long serialVersionUID = 1L;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public List<TDict> getSubList() {
         return subList;
     }
@@ -29,8 +41,6 @@ public class TDict implements Serializable {
     public void setSubList(List<TDict> subList) {
         this.subList = subList;
     }
-
-    private static final long serialVersionUID = 1L;
 
     public TDict(Integer id, Integer pid, Integer dataType, String dataCode, String dataValue, Integer dataTag, String dataDesc, Integer orderNo) {
         this.id = id;

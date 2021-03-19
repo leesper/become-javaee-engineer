@@ -273,4 +273,23 @@
   <select id="selectSubList" resultType="com.kkb.pojo.TDict">
     SELECT id, data_value AS dataValue FROM t_dict WHERE pid = #{id}
   </select>
+
+  <select id="selectByCityName" resultType="com.kkb.pojo.TDict">
+    SELECT `id`, `data_value` AS title
+    FROM `t_dict`
+    WHERE `data_type` = 1 AND `data_value` = #{cityName}
+  </select>
+
+  <select id="selectCityListByTag" resultType="com.kkb.pojo.TDict">
+    <if test="fs == 0">
+      SELECT `id`, `data_value` AS title
+      FROM `t_dict`
+      WHERE `data_type` = 1
+    </if>
+    <if test="fs == 1">
+      SELECT `id`, `data_value` AS title
+      FROM `t_dict`
+      WHERE `data_type` = 1 AND `data_tag` = 1
+    </if>
+  </select>
 </mapper>

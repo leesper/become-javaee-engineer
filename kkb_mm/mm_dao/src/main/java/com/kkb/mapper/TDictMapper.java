@@ -29,4 +29,8 @@ public interface TDictMapper {
     int updateByPrimaryKey(TDict record);
 
     List<TDict> selectDictSubList();
+
+    TDict selectByCityName(String cityName);
+
+    List<TDict> selectCityListByTag(Integer fs);
 }

@@ -3,12 +3,11 @@ const config = require('./utils/config')
 const util = require('./utils/util.js')
 const api = require('./utils/api')
 var aldstat = require("./utils/ald-stat.js")
-const mm = require('./utils/mm.js')
+
 App({
   config,
   util,
   api,
-  mm,
   onLaunch: function() {
     console.log("app onLaunch");
     this.testApi();

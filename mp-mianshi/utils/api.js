@@ -1,7 +1,8 @@
 const request = require('./request')
 
 // 基础数据
-const baseCitys = data => request('post', `/base/citys/`, data)
+// const baseCitys = data => request('post', `/base/citys/`, data)
+const baseCities = data => request('post', `/commons/cities/`, data, true)
 const baseSubjects = data => request('get', '/base/sujects/52', data)
 
 // 用户数据
@@ -18,7 +19,7 @@ const questionsCommmitBatch = data => request('post', `/questions/category/${dat
 const questionsEmpty = data => request('post', `/questions/empty/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 
 module.exports = {
-  baseCitys,
+  baseCities,
   baseSubjects,
   userLogin,
   userCenter,

@@ -10,9 +10,9 @@ Page({
     currentCity: '北京'
   },
   onLoad: function () {
-    this.loadCitys()
+    this.loadCities()
   },
-  loadCitys() {
+  loadCities() {
     let _this = this
     wx.getLocation({
       success: function (res) {
@@ -23,10 +23,10 @@ Page({
           location: `${lat},${lng}`
         }
         app.api
-          .baseCitys(data)
+          .baseCities(data)
           .then(res => {
             _this.setData({
-              cityList: res.data.citys
+              cityList: res.data.data.cities
             })
           })
           .catch(res => {
