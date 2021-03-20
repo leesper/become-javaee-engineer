@@ -30,4 +30,6 @@ public interface TCourseMapper {
 
     // query all courses with its catalog and tags
     List<TCourse> selectListAll();
+
+    List<TCourse> selectCourseList();
 }

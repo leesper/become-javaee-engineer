@@ -4,9 +4,11 @@ import com.kkb.controller.BaseController;
 import com.kkb.domain.AjaxResult;
 import com.kkb.mm.wx.service.CommonService;
 import com.kkb.mm.wx.utils.LocationUtil;
+import com.kkb.pojo.TCourse;
 import com.kkb.pojo.TDict;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +37,18 @@ public class CommonController extends BaseController {
             result.put("location", dict);
             result.put("cities", cityList);
             return AjaxResult.success(result);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
+
+    @GetMapping("commons/courseList")
+    @ResponseBody
+    public AjaxResult getCourseList() {
+        try {
+            List<TCourse> courseList = commonService.getCourseList();
+            return AjaxResult.success(courseList);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());

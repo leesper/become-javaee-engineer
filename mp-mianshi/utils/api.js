@@ -3,7 +3,7 @@ const request = require('./request')
 // 基础数据
 // const baseCitys = data => request('post', `/base/citys/`, data)
 const baseCities = data => request('post', `/commons/cities/`, data, true)
-const baseSubjects = data => request('get', '/base/sujects/52', data)
+const baseSubjects = data => request('get', '/commons/courseList', data, true)
 
 // 用户数据
 const userLogin = data => request('post', '/user/login', data)

@@ -16,7 +16,7 @@ Page({
   },
   onLoad: function(option) {
     console.log("activate onLoad");
-    // this.loadSubjects()
+    this.loadSubjects()
     this.loadCities()
 
     this.setData({
@@ -118,7 +118,7 @@ Page({
       .then(res => {
         console.log(res.data)
         _this.setData({
-          subjectsList: res.data
+          subjectsList: res.data.data
         })
       })
       .catch(res => {
