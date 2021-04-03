@@ -481,4 +481,8 @@
       last_question_id = #{lastQuestionId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByOpenId" resultMap="ResultMapWithBLOBs">
+    SELECT * FROM t_wx_member
+    WHERE open_id = #{openid}
+  </select>
 </mapper>

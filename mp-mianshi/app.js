@@ -71,8 +71,8 @@ App({
       console.log('data => ', data)
       this.api.userLogin(data).then(res => {
         console.log('res => ', res)
-        wx.setStorageSync('token', res.data.token)
-        wx.setStorageSync('userInfo', res.data.userInfo)
+        wx.setStorageSync('token', res.data.data.token)
+        wx.setStorageSync('userInfo', res.data.data.userInfo)
         typeof cb == 'function' && cb()
       })
     }

@@ -33,4 +33,6 @@ public interface TWxMemberMapper {
     int updateByPrimaryKeyWithBLOBs(TWxMember record);
 
     int updateByPrimaryKey(TWxMember record);
+
+    TWxMember selectByOpenId(String openid);
 }

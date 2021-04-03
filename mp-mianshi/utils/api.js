@@ -6,7 +6,7 @@ const baseCities = data => request('post', `/commons/cities/`, data, true)
 const baseSubjects = data => request('get', '/commons/courseList', data, true)
 
 // 用户数据
-const userLogin = data => request('post', '/user/login', data)
+const userLogin = data => request('post', '/member/login', data, true)
 const userCenter = data => request('get', '/user/center', data)
 
 // 面试题数据
