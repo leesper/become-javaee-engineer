@@ -6,6 +6,8 @@ import com.kkb.pojo.TWxMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class WxMemberServiceImpl implements WxMemberService {
     @Autowired
@@ -19,5 +21,10 @@ public class WxMemberServiceImpl implements WxMemberService {
     @Override
     public int regWxMember(TWxMember member) {
         return wxMemberMapper.insert(member);
+    }
+
+    @Override
+    public int updateCityCourse(Map<String, String> data) {
+        return wxMemberMapper.updateCityCourse(data);
     }
 }

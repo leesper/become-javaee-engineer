@@ -10,7 +10,8 @@ const userLogin = data => request('post', '/member/login', data, true)
 const userCenter = data => request('get', '/user/center', data)
 
 // 面试题数据
-const questionsConfirm = data => request('post', `/questions/confirm`, data)
+const questionsConfirm = data => request('post', `/member/setCityCourse`, data, true)
+
 const questionsFavorite = data => request('post', `/questions/favorite/${data.id}`, data)
 const questionsCategorys = data => request('get', `/questions/categorys/${data.categoryKind}/${data.categoryType}`, data)
 const questionsList = data => request('get', `/questions/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)

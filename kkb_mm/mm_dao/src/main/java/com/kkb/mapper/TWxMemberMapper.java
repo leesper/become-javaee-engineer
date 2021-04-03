@@ -3,6 +3,8 @@ package com.kkb.mapper;
 import com.kkb.pojo.TWxMember;
 import com.kkb.pojo.TWxMemberExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TWxMemberMapper {
@@ -35,4 +37,6 @@ public interface TWxMemberMapper {
     int updateByPrimaryKey(TWxMember record);
 
     TWxMember selectByOpenId(String openid);
+
+    int updateCityCourse(Map<String, String> data);
 }

@@ -485,4 +485,10 @@
     SELECT * FROM t_wx_member
     WHERE open_id = #{openid}
   </select>
+
+  <update id="updateCityCourse">
+    UPDATE t_wx_member
+    SET `city_id` = ${cityID}, `course_id` = #{subjectID}
+    WHERE `open_id`= #{openId}
+  </update>
 </mapper>
