@@ -33,7 +33,7 @@
           <view class="item {{item.id==subjectID?'active':''}}" data-id='{{item.id}}' bindtap='changeTechnology'>
             <view class='item-content'>
               <view class='mark'>
-                <image src="/images/{{item.title}}.png" width="36"></image>
+                <image src="/images/{{item.title}}.jpg" width="36"></image>
               </view>
               <view class='title'>{{item.title}}</view>
             </view>
