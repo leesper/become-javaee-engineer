@@ -7,13 +7,15 @@ const baseSubjects = data => request('get', '/commons/courseList', data, true)
 
 // 用户数据
 const userLogin = data => request('post', '/member/login', data, true)
-const userCenter = data => request('get', '/user/center', data)
+// const userCenter = data => request('get', '/user/center', data)
 
 // 面试题数据
 const questionsConfirm = data => request('post', `/member/setCityCourse`, data, true)
 
 const questionsFavorite = data => request('post', `/questions/favorite/${data.id}`, data)
-const questionsCategorys = data => request('get', `/questions/categorys/${data.categoryKind}/${data.categoryType}`, data)
+
+const questionsCategorys = data => request('post', `/category/list`, data, true)
+
 const questionsList = data => request('get', `/questions/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 const questionsCommmitOne = data => request('post', `/questions/${data.id}/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 const questionsCommmitBatch = data => request('post', `/questions/category/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
@@ -23,7 +25,7 @@ module.exports = {
   baseCities,
   baseSubjects,
   userLogin,
-  userCenter,
+  // userCenter,
   questionsConfirm,
   questionsFavorite,
   questionsCategorys,

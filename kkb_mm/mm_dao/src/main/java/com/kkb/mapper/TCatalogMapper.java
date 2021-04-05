@@ -3,6 +3,8 @@ package com.kkb.mapper;
 import com.kkb.pojo.TCatalog;
 import com.kkb.pojo.TCatalogExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TCatalogMapper {
@@ -27,4 +29,7 @@ public interface TCatalogMapper {
     int updateByPrimaryKeySelective(TCatalog record);
 
     int updateByPrimaryKey(TCatalog record);
+
+    List<Map> selectCategoryList(Map<String, Object> data);
+
 }

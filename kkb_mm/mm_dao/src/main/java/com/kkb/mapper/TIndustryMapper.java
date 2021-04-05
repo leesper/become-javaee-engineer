@@ -4,6 +4,8 @@ import com.kkb.pojo.TCompany;
 import com.kkb.pojo.TIndustry;
 import com.kkb.pojo.TIndustryExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TIndustryMapper {
@@ -30,4 +32,7 @@ public interface TIndustryMapper {
     int updateByPrimaryKey(TIndustry record);
 
     List<TIndustry> selectIndustryListByCompany(Integer id);
+
+    List<Map> selectCategoryList(Map<String, Object> data);
+
 }

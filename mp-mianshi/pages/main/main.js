@@ -29,7 +29,7 @@ Page({
   onLoad: function (option) {
     var _this = this
     _this.loadQuestions() // 加载问题列表
-    _this.loadUserCenter() // 加载个人中心
+    // _this.loadUserCenter() // 加载个人中心
 
     this.setData({
       userInfo: wx.getStorageSync('userInfo') || {}
@@ -48,13 +48,13 @@ Page({
     let _this = this
     let backdata = {
       categoryType: _this.data.currentTypeId,
-      categoryKind: _this.data.categoryKind
+      categoryKind: _this.data.currentKindId
     }
     app.api
       .questionsCategorys(backdata)
       .then(res => {
         _this.setData({
-          questionList: res.data.items
+          questionList: res.data.data
         })
       })
       .catch(res => {
@@ -65,7 +65,7 @@ Page({
           duration: 5
         })
       })
-    _this.loadUserCenter()
+    // _this.loadUserCenter()
   },
   /**
    * 业务请求
@@ -82,7 +82,7 @@ Page({
       .questionsCategorys(data)
       .then(res => {
         _this.setData({
-          questionList: res.data.items
+          questionList: res.data.data
         })
       })
       .catch(res => {
@@ -97,7 +97,7 @@ Page({
   // 切换：题库列表
   loadSwitchData: function (e) {
     this.setData({
-      categoryKind: e.detail.val
+      categoryKind: parseInt(e.detail.val)
     })
     let _this = this
     let data = {
@@ -107,8 +107,10 @@ Page({
     app.api
       .questionsCategorys(data)
       .then(res => {
+        console.log("DATA")
+        console.log(res.data)
         _this.setData({
-          questionList: res.data.items
+          questionList: res.data.data
         })
       })
       .catch(res => {
@@ -121,25 +123,25 @@ Page({
       })
   },
   // 个人中心
-  loadUserCenter() {
-    let _this = this
-    app.api
-      .userCenter()
-      .then(res => {
-        lastAnswer = res.data.lastAnswer
-        category = res.data.category
-        _this.setData({
-          answerCounts: res.data.answerCount
-        })
-      })
-      .catch(res => {
-        $Message({
-          content: '加载出现错误',
-          type: 'error',
-          duration: 5
-        })
-      })
-  },
+  // loadUserCenter() {
+  //   let _this = this
+  //   app.api
+  //     .userCenter()
+  //     .then(res => {
+  //       lastAnswer = res.data.lastAnswer
+  //       category = res.data.category
+  //       _this.setData({
+  //         answerCounts: res.data.answerCount
+  //       })
+  //     })
+  //     .catch(res => {
+  //       $Message({
+  //         content: '加载出现错误',
+  //         type: 'error',
+  //         duration: 5
+  //       })
+  //     })
+  // },
   /**
    * 界面交互
    */

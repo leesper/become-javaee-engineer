@@ -3,6 +3,8 @@ package com.kkb.mapper;
 import com.kkb.pojo.TCompany;
 import com.kkb.pojo.TCompanyExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TCompanyMapper {
@@ -31,4 +33,7 @@ public interface TCompanyMapper {
     List<TCompany> selectListAll();
 
     TCompany selectByIdForQuestion(Integer id);
+
+    List<Map> selectCategoryList(Map<String, Object> data);
+
 }
