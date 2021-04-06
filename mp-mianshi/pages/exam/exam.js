@@ -104,7 +104,7 @@ Page({
     })
       .then(res => {
         console.log('数据下载完成')
-        this.processData(res.data)
+        this.processData(res.data.data)
         wx.hideLoading()
       })
       .catch(err => {

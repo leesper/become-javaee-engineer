@@ -5,4 +5,6 @@ import java.util.Map;
 
 public interface CategoryService {
     List<Map> findCategory(Map<String, Object> data);
+
+    Map<String, Object> findCategoryQuestionList(Map<String, Object> data);
 }

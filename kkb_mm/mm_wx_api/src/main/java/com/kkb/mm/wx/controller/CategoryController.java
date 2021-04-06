@@ -34,10 +34,29 @@ public class CategoryController extends BaseController {
             data.put("cityId", member.getCityId());
             data.put("courseId", member.getCourseId());
 
-            logger.debug("category/list", data);
+            logger.debug("category/list: %s\n", data);
             List<Map> mapList = categoryService.findCategory(data);
             return AjaxResult.success(mapList);
 
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
+
+    @PostMapping("category/questions/list")
+    @ResponseBody
+    public AjaxResult getCategoryQuestionList(@RequestBody Map<String, Object> data) {
+        try {
+            String openId = getHeaderAuthorization();
+            TWxMember member = wxMemberService.findByOpenId(openId);
+            data.put("memberId", member.getId());
+            data.put("cityId", member.getCityId());
+            data.put("courseId", member.getCourseId());
+
+            logger.debug("category/questions/list: " + data);
+            Map<String, Object> result = categoryService.findCategoryQuestionList(data);
+            return AjaxResult.success(result);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());

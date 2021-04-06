@@ -16,7 +16,8 @@ const questionsFavorite = data => request('post', `/questions/favorite/${data.id
 
 const questionsCategorys = data => request('post', `/category/list`, data, true)
 
-const questionsList = data => request('get', `/questions/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
+const questionsList = data => request('post', `category/questions/list`, data, true)
+
 const questionsCommmitOne = data => request('post', `/questions/${data.id}/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 const questionsCommmitBatch = data => request('post', `/questions/category/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 const questionsEmpty = data => request('post', `/questions/empty/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)

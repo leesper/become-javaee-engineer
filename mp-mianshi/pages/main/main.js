@@ -48,7 +48,7 @@ Page({
     let _this = this
     let backdata = {
       categoryType: _this.data.currentTypeId,
-      categoryKind: _this.data.currentKindId
+      categoryKind: _this.data.categoryKind
     }
     app.api
       .questionsCategorys(backdata)
