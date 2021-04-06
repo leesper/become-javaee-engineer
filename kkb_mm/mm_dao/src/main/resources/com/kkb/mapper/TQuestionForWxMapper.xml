@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kkb.mapper.TQuestionForWxMapper">
-  <select id="selectQuestionByQueryParams" resultType="com.kkb.pojo.TQuestionForWx">
-    SELECT q.id, subject AS title,
-           difficulty AS grade,
-           analysis AS content,
-           analysis_video AS video,
-           '' AS videoPoster,
-           IF(mq.tag IS NULL, 0, 1) AS isFinished,
-           IF(mq.is_favorite = 1, 1, 0) AS isFavorite,
-           q.type,
-           mq.tag AS answerTag,
-           q.catalog_id,
-           mq.answerResult
-    FROM t_question q
-           LEFT JOIN tr_member_question mq
-                     ON q.id = mq.question_id AND mq.member_id = #{memberId}
-    <if test="categoryKind != null and categoryKind == 1">
-      AND catalog_id = #{categoryID}
-    </if>
+    <resultMap id="resultMapForQuestionList" type="com.kkb.pojo.TQuestionForWx">
+        <id column="id" property="id" />
+        <collection property="tags"
+                    javaType="java.util.ArrayList"
+                    ofType="com.kkb.pojo.TTag"
+                    column="id"
+                    select="selectTagsByQuestionId" />
+        <collection property="selection"
+                    javaType="java.util.ArrayList"
+                    ofType="com.kkb.pojo.TQuestionItemForWx"
+                    column="id"
+                    select="selectItemsByQuestionId" />
+    </resultMap>
+    <select id="selectQuestionByQueryParams" resultMap="resultMapForQuestionList">
+        SELECT q.id, subject AS title,
+            difficulty AS grade,
+            analysis AS content,
+            analysis_video AS video,
+            '' AS videoPoster,
+            IF(mq.tag IS NULL, 0, 1) AS isFinished,
+            IF(mq.is_favorite = 1, 1, 0) AS isFavorite,
+            q.type,
+            mq.tag AS answerTag,
+            q.catalog_id,
+            mq.answerResult
+        FROM t_question q
+            LEFT JOIN tr_member_question mq
+                        ON q.id = mq.question_id AND mq.member_id = #{memberId}
+        <if test="categoryKind != null and categoryKind == 1">
+            AND catalog_id = #{categoryID}
+        </if>
+    </select>
 
-  </select>
+    <select id="selectTagsByQuestionId" resultType="com.kkb.pojo.TTag">
+        SELECT id, name AS title
+        FROM t_tag WHERE id IN (SELECT tag_id FROM tr_question_tag WHERE question_id = #{id})
+    </select>
+
+    <select id="selectItemsByQuestionId" resultType="com.kkb.pojo.TQuestionItemForWx">
+        SELECT id, '' AS code, is_right AS isRight, content AS title
+        FROM t_question_item WHERE question_id = #{id}
+    </select>
 </mapper>

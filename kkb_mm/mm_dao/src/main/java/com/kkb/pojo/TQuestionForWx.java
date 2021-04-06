@@ -19,7 +19,7 @@ public class TQuestionForWx implements Serializable {
     private Integer isFavorite;
     private Integer memberId;
     private List<TTag> tags;
-    private List<TQuestionItem> selection;
+    private List<TQuestionItemForWx> selection;
 
     public Integer getId() {
         return id;
@@ -133,11 +133,11 @@ public class TQuestionForWx implements Serializable {
         this.tags = tags;
     }
 
-    public List<TQuestionItem> getSelection() {
+    public List<TQuestionItemForWx> getSelection() {
         return selection;
     }
 
-    public void setSelection(List<TQuestionItem> selection) {
+    public void setSelection(List<TQuestionItemForWx> selection) {
         this.selection = selection;
     }
 

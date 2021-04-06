@@ -18,6 +18,8 @@ public class TTag implements Serializable {
 
     private Integer orderNo;
 
+    private String title;
+
     private static final long serialVersionUID = 1L;
 
     public TTag(Integer id, String name, Date createDate, Integer status, Integer userId, Integer courseId, Integer orderNo) {
@@ -32,6 +34,14 @@ public class TTag implements Serializable {
 
     public TTag() {
         super();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getId() {
