@@ -15,7 +15,7 @@
                     select="selectItemsByQuestionId" />
     </resultMap>
     <select id="selectQuestionByQueryParams" resultMap="resultMapForQuestionList">
-        SELECT q.id, subject AS title,
+        SELECT * FROM (SELECT q.id, subject AS title,
             difficulty AS grade,
             analysis AS content,
             analysis_video AS video,
@@ -28,10 +28,12 @@
             mq.answerResult
         FROM t_question q
             LEFT JOIN tr_member_question mq
-                        ON q.id = mq.question_id AND mq.member_id = #{memberId}
-        <if test="categoryKind != null and categoryKind == 1">
-            AND catalog_id = #{categoryID}
-        </if>
+                        ON q.id = mq.question_id AND mq.member_id = #{memberId}) subquestion
+        <where>
+            <if test="categoryKind != null and categoryKind == 1">
+                AND catalog_id = #{categoryID}
+            </if>
+        </where>
     </select>
 
     <select id="selectTagsByQuestionId" resultType="com.kkb.pojo.TTag">

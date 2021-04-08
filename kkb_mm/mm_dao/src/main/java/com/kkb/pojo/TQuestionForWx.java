@@ -20,6 +20,15 @@ public class TQuestionForWx implements Serializable {
     private Integer memberId;
     private List<TTag> tags;
     private List<TQuestionItemForWx> selection;
+    private Integer isFamous;
+
+    public boolean getIsFamous() {
+        return isFamous != null && isFamous == 1;
+    }
+
+    public void setIsFamous(Integer isFamous) {
+        this.isFamous = isFamous;
+    }
 
     public Integer getId() {
         return id;
@@ -94,23 +103,26 @@ public class TQuestionForWx implements Serializable {
     }
 
     public boolean isAnswerRight() {
-        return isAnswerRight;
+        if (answerTag != null && (answerTag == 0 || answerTag == 2)) {
+            return true;
+        }
+        return false;
     }
 
     public void setAnswerRight(boolean answerRight) {
         isAnswerRight = answerRight;
     }
 
-    public Integer getIsFinished() {
-        return isFinished;
+    public boolean getIsFinished() {
+        return isFinished != null && isFinished == 1;
     }
 
     public void setIsFinished(Integer isFinished) {
         this.isFinished = isFinished;
     }
 
-    public Integer getIsFavorite() {
-        return isFavorite;
+    public boolean getIsFavorite() {
+        return isFavorite != null && isFavorite == 1;
     }
 
     public void setIsFavorite(Integer isFavorite) {
@@ -134,6 +146,14 @@ public class TQuestionForWx implements Serializable {
     }
 
     public List<TQuestionItemForWx> getSelection() {
+        Character code = 'A';
+        if (selection == null) {
+            return null;
+        }
+        for (TQuestionItemForWx item : selection) {
+            item.setCode(code.toString());
+            code++;
+        }
         return selection;
     }
 

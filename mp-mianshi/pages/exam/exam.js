@@ -52,9 +52,9 @@ Page({
    *    页面加载完成之后就不会在执行
    */
   onLoad: function (option) {
-    categoryID = option.id
-    categoryKind = option.kind
-    categoryType = option.type
+    categoryID = parseInt(option.id)
+    categoryKind = parseInt(option.kind)
+    categoryType = parseInt(option.type)
     this.setData({
       categoryTitle: option.title,
       categoryKind: option.kind,
@@ -104,6 +104,7 @@ Page({
     })
       .then(res => {
         console.log('数据下载完成')
+        console.log(res)
         this.processData(res.data.data)
         wx.hideLoading()
       })

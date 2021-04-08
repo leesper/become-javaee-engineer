@@ -123,12 +123,12 @@
         收藏
       </view>
       <view class="feedback">
-        <view class="right {{questions.items[currPosition].isFinished && questions.items[currPosition].answerIsRight ? 'ongood': ''}}" data-current="{{true}}" bindtap="handleAnswerIsRight">
+        <view class="right {{questions.items[currPosition].isFinished && questions.items[currPosition].isAnswerRight ? 'ongood': ''}}" data-current="{{true}}" bindtap="handleAnswerIsRight">
           <span class="icon icon-smile"></span>
           <span wx:if="{{questions.items[currPosition].type === QuestionType.SHORT}}">理想</span>
           <span wx:else>正确</span>
         </view>
-        <view class="wrong {{questions.items[currPosition].isFinished && questions.items[currPosition].answerIsRight === false ? 'onbad': ''}}" data-current="{{false}}" bindtap="handleAnswerIsRight">
+        <view class="wrong {{questions.items[currPosition].isFinished && questions.items[currPosition].isAnswerRight === false ? 'onbad': ''}}" data-current="{{false}}" bindtap="handleAnswerIsRight">
           <span class="icon icon-cry"></span>
           <span wx:if="{{questions.items[currPosition].type === QuestionType.SHORT}}">不理想</span>
           <span wx:else>错误</span>
@@ -153,7 +153,7 @@
       <scroll-view scroll-y style="height: 800rpx;">
         <view class="total">
           <view class="numbers">
-            <view wx:for="{{questions.items}}" wx:key="{{index}}" bindtap="handleSelectItem" data-current="{{index}}" class="num {{item.isFinished && item.answerIsRight ? 'right':''}} {{item.isFinished && !item.answerIsRight ? 'wrong':''}} {{item.id === questions.items[currPosition].id ? 'current' : ''}}">
+            <view wx:for="{{questions.items}}" wx:key="{{index}}" bindtap="handleSelectItem" data-current="{{index}}" class="num {{item.isFinished && item.isAnswerRight ? 'right':''}} {{item.isFinished && !item.isAnswerRight ? 'wrong':''}} {{item.id === questions.items[currPosition].id ? 'current' : ''}}">
               {{index+1}}
             </view>
           </view>
