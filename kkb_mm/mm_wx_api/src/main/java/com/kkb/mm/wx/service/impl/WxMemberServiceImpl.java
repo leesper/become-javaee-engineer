@@ -27,4 +27,13 @@ public class WxMemberServiceImpl implements WxMemberService {
     public int updateCityCourse(Map<String, String> data) {
         return wxMemberMapper.updateCityCourse(data);
     }
+
+    @Override
+    public Map<String, Object> findMemberCenterById(Integer id) {
+        Map<String, Object> result = wxMemberMapper.selectMemberCenterById(id);
+        String categoryTitle = wxMemberMapper.selectCategoryTitleByCategory((Integer) result.get("categoryKind"),
+                (Integer) result.get("categoryID"));
+        result.put("categoryTitle", categoryTitle);
+        return result;
+    }
 }

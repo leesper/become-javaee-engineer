@@ -7,7 +7,7 @@ const baseSubjects = data => request('get', '/commons/courseList', data, true)
 
 // 用户数据
 const userLogin = data => request('post', '/member/login', data, true)
-// const userCenter = data => request('get', '/user/center', data)
+const userCenter = data => request('get', '/member/center', data, true)
 
 // 面试题数据
 const questionsConfirm = data => request('post', `/member/setCityCourse`, data, true)
@@ -18,7 +18,8 @@ const questionsCategorys = data => request('post', `/category/list`, data, true)
 
 const questionsList = data => request('post', `/category/questions/list`, data, true)
 
-const questionsCommmitOne = data => request('post', `/questions/${data.id}/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
+const questionsCommmitOne = data => request('post', `/category/questions/commit`, data, true)
+
 const questionsCommmitBatch = data => request('post', `/questions/category/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 const questionsEmpty = data => request('post', `/questions/empty/${data.categoryID}/${data.categoryKind}/${data.categoryType}`, data)
 
@@ -26,7 +27,7 @@ module.exports = {
   baseCities,
   baseSubjects,
   userLogin,
-  // userCenter,
+  userCenter,
   questionsConfirm,
   questionsFavorite,
   questionsCategorys,

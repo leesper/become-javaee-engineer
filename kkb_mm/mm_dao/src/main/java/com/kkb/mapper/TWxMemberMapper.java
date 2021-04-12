@@ -39,4 +39,10 @@ public interface TWxMemberMapper {
     TWxMember selectByOpenId(String openid);
 
     int updateCityCourse(Map<String, String> data);
+
+    void updateMemberLastAnswer(Map<String, Object> data);
+
+    Map<String, Object> selectMemberCenterById(Integer id);
+
+    String selectCategoryTitleByCategory(@Param("categoryKind") Integer categoryKind, @Param("categoryID") Integer categoryID);
 }

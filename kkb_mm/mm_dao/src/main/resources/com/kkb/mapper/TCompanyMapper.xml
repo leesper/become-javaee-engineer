@@ -315,5 +315,10 @@
     SELECT `id`, `short_name` AS title, (SELECT COUNT(`id`) FROM t_question WHERE `company_id` = c.id) AS allCount,
            (SELECT COUNT(`id`) FROM t_question q WHERE q.company_id = c.id AND `id` IN (SELECT `question_id` FROM tr_member_question WHERE `member_id` = #{memberId})) AS finishedCount
     FROM t_company c
+    <where>
+      <if test="categoryID != null">
+        AND `id` = #{categoryID}
+      </if>
+    </where>
   </select>
 </mapper>

@@ -62,4 +62,20 @@ public class CategoryController extends BaseController {
             return AjaxResult.error(e.getMessage());
         }
     }
+
+    @PostMapping("/category/questions/commit")
+    @ResponseBody
+    public AjaxResult commitQuestion(@RequestBody Map<String, Object> data) {
+        try {
+            String openId = getHeaderAuthorization();
+            TWxMember member = wxMemberService.findByOpenId(openId);
+            data.put("memberId", member.getId());
+            logger.debug("category/questions/commit: " + data);
+            int result = categoryService.commitQuestion(data);
+            return toAjax(result);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
 }

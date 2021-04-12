@@ -25,13 +25,49 @@
             q.type,
             mq.tag AS answerTag,
             q.catalog_id,
+            q.company_id,
             mq.answerResult
         FROM t_question q
-            LEFT JOIN tr_member_question mq
-                        ON q.id = mq.question_id AND mq.member_id = #{memberId}) subquestion
+        LEFT JOIN tr_member_question mq
+        ON q.id = mq.question_id AND mq.member_id = #{memberId}) subquestion
         <where>
             <if test="categoryKind != null and categoryKind == 1">
                 AND catalog_id = #{categoryID}
+            </if>
+            <if test="categoryKind != null and categoryKind == 2">
+                AND company_id = #{categoryID}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectQuestionByIndustry" resultMap="resultMapForQuestionList">
+        SELECT * FROM (SELECT q.id, subject AS title,
+        difficulty AS grade,
+        analysis AS content,
+        analysis_video AS video,
+        '' AS videoPoster,
+        IF(mq.tag IS NULL, 0, 1) AS isFinished,
+        IF(mq.is_favorite = 1, 1, 0) AS isFavorite,
+        q.type,
+        mq.tag AS answerTag,
+        q.catalog_id,
+        q.company_id,
+        mq.answerResult,
+        ci.industry_id
+        FROM t_question q
+        LEFT JOIN tr_member_question mq
+        ON q.id = mq.question_id AND mq.member_id = #{memberId}
+        LEFT JOIN tr_company_industry ci
+        ON q.company_id = ci.company_id) subquestion
+        <where>
+            <if test="categoryKind != null and categoryKind == 1">
+                AND catalog_id = #{categoryID}
+            </if>
+            <if test="categoryKind != null and categoryKind == 2">
+                AND company_id = #{categoryID}
+            </if>
+            <if test="categoryKind != null and categoryKind == 3">
+                AND industry_id = #{categoryID}
             </if>
         </where>
     </select>

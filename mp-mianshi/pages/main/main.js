@@ -10,7 +10,7 @@ Page({
   data: {
     pagetype: '已做',
     questionList: [], //  问题列表
-    currentTypeId: 100, // 当前类型：首页
+    currentTypeId: 101, // 当前类型：首页
     currentKindId: 1, // 默认种类： TAG
     currentTab: 0, // 点击切换索引
     userInfo: {}, //  用户信息
@@ -29,7 +29,7 @@ Page({
   onLoad: function (option) {
     var _this = this
     _this.loadQuestions() // 加载问题列表
-    // _this.loadUserCenter() // 加载个人中心
+    _this.loadUserCenter() // 加载个人中心
 
     this.setData({
       userInfo: wx.getStorageSync('userInfo') || {}
@@ -122,26 +122,26 @@ Page({
         })
       })
   },
-  // 个人中心
-  // loadUserCenter() {
-  //   let _this = this
-  //   app.api
-  //     .userCenter()
-  //     .then(res => {
-  //       lastAnswer = res.data.lastAnswer
-  //       category = res.data.category
-  //       _this.setData({
-  //         answerCounts: res.data.answerCount
-  //       })
-  //     })
-  //     .catch(res => {
-  //       $Message({
-  //         content: '加载出现错误',
-  //         type: 'error',
-  //         duration: 5
-  //       })
-  //     })
-  // },
+  //个人中心
+  loadUserCenter() {
+    let _this = this
+    app.api
+      .userCenter()
+      .then(res => {
+        lastAnswer = res.data.data
+        category = res.data.data.category
+        _this.setData({
+          answerCounts: res.data.data.answerCount
+        })
+      })
+      .catch(res => {
+        $Message({
+          content: '加载出现错误',
+          type: 'error',
+          duration: 5
+        })
+      })
+  },
   /**
    * 界面交互
    */
@@ -198,7 +198,7 @@ Page({
   // 路由： 继续答题
   handleGoExam() {
     wx.navigateTo({
-      url: `../exam/exam?id=${lastAnswer.categoryId}&kind=${lastAnswer.categoryKind}&type=${lastAnswer.categoryType}&title=${lastAnswer.categoryTitle}`
+      url: `../exam/exam?id=${lastAnswer.categoryID}&kind=${lastAnswer.categoryKind}&type=${lastAnswer.categoryType}&title=${lastAnswer.categoryTitle}`
     })
   },
   // 切换题库

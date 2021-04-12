@@ -11,6 +11,7 @@ import com.kkb.utils.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -81,6 +82,20 @@ public class WxMemberController extends BaseController {
             logger.debug("data: " + data);
             int result = wxMemberService.updateCityCourse(data);
             return toAjax(result);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return AjaxResult.error(e.getMessage());
+        }
+    }
+
+    @GetMapping("member/center")
+    @ResponseBody
+    public AjaxResult getMemberCenter() {
+        try {
+            String openId = getHeaderAuthorization();
+            TWxMember wxMember = wxMemberService.findByOpenId(openId);
+            Map<String, Object> resultMap = wxMemberService.findMemberCenterById(wxMember.getId());
+            return AjaxResult.success(resultMap);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return AjaxResult.error(e.getMessage());

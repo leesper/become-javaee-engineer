@@ -7,4 +7,5 @@ import java.util.Map;
 
 public interface TQuestionForWxMapper {
     List<TQuestionForWx> selectQuestionByQueryParams(Map<String, Object> data);
+    List<TQuestionForWx> selectQuestionByIndustry(Map<String, Object> data);
 }

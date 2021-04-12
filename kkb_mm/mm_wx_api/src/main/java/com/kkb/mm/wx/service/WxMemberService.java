@@ -10,4 +10,6 @@ public interface WxMemberService {
     int regWxMember(TWxMember member);
 
     int updateCityCourse(Map<String, String> data);
+
+    Map<String, Object> findMemberCenterById(Integer id);
 }
